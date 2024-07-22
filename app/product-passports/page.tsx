@@ -13,7 +13,7 @@ export default function Home() {
       )}
       >
         <SidebarMenu/>
-        <h1>Map</h1>
+        <DppDashboard/>
       </div>
     </main>
   );

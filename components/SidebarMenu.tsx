@@ -7,7 +7,7 @@ import {
 import Link from "next/link";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import UserAvatar from "./UserAvatar";
+import UserAvatar from "./ui/UserAvatar";
 import { MdLocationOn } from 'react-icons/md';
 import { FaPassport } from "react-icons/fa";
 import { FaPlus } from 'react-icons/fa';
@@ -17,28 +17,28 @@ const SidebarMenu = () => {
     const links = [
         {
           label: "Supply Routes",
-          href: "#",
+          href: "/",
           icon: (
             <MdLocationOn className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
           ),
         },
         {
           label: "Product Passports",
-          href: "#",
+          href: "/product-passports",
           icon: (
             <FaPassport className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
           ),
         },
         {
           label: "Add Route",
-          href: "#",
+          href: "/add-route",
           icon: (
             <FaPlus className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
           ),
         },
         {
           label: "Logout",
-          href: "#",
+          href: "/",
           icon: (
             <IconArrowLeft className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
           ),

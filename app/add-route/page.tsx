@@ -13,7 +13,7 @@ export default function Home() {
       )}
       >
         <SidebarMenu/>
-        <h1>Map</h1>
+        <h1>Add</h1>
       </div>
     </main>
   );
