@@ -3,37 +3,37 @@ import React, { useState } from "react";
 import { Sidebar, SidebarBody, SidebarLink } from "@/components/ui/Sidebar";
 import {
   IconArrowLeft,
-  IconBrandTabler,
-  IconSettings,
-  IconUserBolt,
 } from "@tabler/icons-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { cn } from "@/lib/utils";
+import UserAvatar from "./UserAvatar";
+import { MdLocationOn } from 'react-icons/md';
+import { FaPassport } from "react-icons/fa";
+import { FaPlus } from 'react-icons/fa';
 
 
 const SidebarMenu = () => {
     const links = [
         {
-          label: "Dashboard",
+          label: "Supply Routes",
           href: "#",
           icon: (
-            <IconBrandTabler className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+            <MdLocationOn className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
           ),
         },
         {
-          label: "Profile",
+          label: "Product Passports",
           href: "#",
           icon: (
-            <IconUserBolt className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+            <FaPassport className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
           ),
         },
         {
-          label: "Settings",
+          label: "Add Route",
           href: "#",
           icon: (
-            <IconSettings className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+            <FaPlus className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
           ),
         },
         {
@@ -47,7 +47,7 @@ const SidebarMenu = () => {
     const [open, setOpen] = useState(false);
 
     return (
-        <Sidebar open={open} setOpen={setOpen} animate={false}>
+        <Sidebar open={open} setOpen={setOpen} animate={true}>
         <SidebarBody className="justify-between gap-10">
             <div className="flex flex-col flex-1 overflow-y-auto">
                 <>
@@ -62,17 +62,9 @@ const SidebarMenu = () => {
             <div>
                 <SidebarLink
                 link={{
-                    label: "Manu Arora",
+                    label: "Clinton Liu",
                     href: "#",
-                    icon: (
-                    <Image
-                        src="https://assets.aceternity.com/manu.png"
-                        className="h-7 w-7 flex-shrink-0 rounded-full"
-                        width={50}
-                        height={50}
-                        alt="Avatar"
-                    />
-                    ),
+                    icon: <UserAvatar/>,
                 }}
                 />
             </div>
