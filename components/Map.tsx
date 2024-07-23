@@ -20,7 +20,7 @@ const markerData = [
 
 const GoogleMapComponent = () => {
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: '*API KEY HERE*',
+    googleMapsApiKey: 'API****',
   });
 
   const [selectedMarker, setSelectedMarker] = useState(null);
