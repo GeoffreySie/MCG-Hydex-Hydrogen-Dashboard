@@ -8,16 +8,30 @@ const InformationWindow = () => {
   const [activeTab, setActiveTab] = useState('tab1');
   const [miniWindow, setMiniWindow] = useState(true);
 
-const [locations, setLocations] = useState([]);
+  const [locations, setLocations] = useState<Location[]>([]);
 
-useEffect(() => {
-  async function fetchLocations() {
-    const response = await fetch('/locations.json');
-    const data = await response.json();
-    setLocations(data.locations);
+  interface Location {
+    _id: string;
+    name: string;
+    latitude: number;
+    longitude: number;
+    status: Date | null;
   }
-  fetchLocations();
-}, []);
+
+  useEffect(() => {
+    const fetchLocations = async () => {
+      try {
+        const response = await fetch('/api/locations');
+        const data: Location[] = await response.json(); // Ensure the fetched data is typed
+        setLocations(data);
+      } catch (error) {
+        console.error('Error fetching locations:', error);
+      }
+    };
+
+    fetchLocations();
+  }, []);
+
 
   return (
     <div
@@ -52,8 +66,8 @@ useEffect(() => {
       <MdExpandLess className={`${miniWindow ? 'block' : 'hidden'}`} />
     </button>
   </div>
-  <div className="p-4 text-black">
-    {activeTab === 'tab1' && <div>
+  <div className="h-full overflow-y-auto bg-blue-100 p-4 text-black">
+    {activeTab === 'tab1' && <div className=''>
       <h1>Content for Tab 1</h1>
       {locations.map((location) => (
         <RouteLocElement key={location._id} location={location} />

@@ -7,23 +7,41 @@ const containerStyle = {
 };
 
 const center = {
-  lat: -3.745,
-  lng: -38.523,
+  lat: 51.5074,
+  lng: -0.1278
 };
 
-const markerData = [
-  { lat: -3.745, lng: -38.523, color: 'red', label: 'A', info: 'Marker A' },
-  { lat: -3.745, lng: -38.633, color: 'red', label: 'B', info: 'Marker B' },
-  { lat: -3.855, lng: -38.523, color: 'green', label: 'C', info: 'Marker C' },
-  { lat: -3.855, lng: -38.633, color: 'green', label: 'D', info: 'Marker D' },
-];
+// Define the Location interface
+interface Location {
+  _id: string;
+  name: string;
+  latitude: number;
+  longitude: number;
+  status: Date | null;
+}
 
 const GoogleMapComponent = () => {
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: 'API****',
+    googleMapsApiKey: process.env.NEXT_PUBLIC_API_KEY, // Ensure your API key is accessible
   });
 
-  const [selectedMarker, setSelectedMarker] = useState(null);
+  // Type the locations state using the Location interface
+  const [locations, setLocations] = useState<Location[]>([]);
+  const [selectedMarker, setSelectedMarker] = useState<Location | null>(null);
+
+  useEffect(() => {
+    const fetchLocations = async () => {
+      try {
+        const response = await fetch('/api/locations');
+        const data: Location[] = await response.json(); // Ensure the fetched data is typed
+        setLocations(data);
+      } catch (error) {
+        console.error('Error fetching locations:', error);
+      }
+    };
+
+    fetchLocations();
+  }, []);
 
   if (!isLoaded) {
     return <div>Loading...</div>;
@@ -45,15 +63,15 @@ const GoogleMapComponent = () => {
         fullscreenControl: false,
       }}
     >
-      {markerData.map((location, index) => (
+      {locations.map((location) => (
         <Marker
-          key={index}
-          position={{ lat: location.lat, lng: location.lng }}
-          label={location.label}
+          key={location._id} // Use the unique ID for the key
+          position={{ lat: location.latitude, lng: location.longitude }}
+          label={location.name}
           onClick={() => setSelectedMarker(location)}
           icon={{
             path: window.google.maps.SymbolPath.CIRCLE,
-            fillColor: location.color,
+            fillColor: location.status ? 'green' : 'red', // Example color based on status
             fillOpacity: 1,
             strokeColor: 'black',
             strokeWeight: 2,
@@ -63,16 +81,17 @@ const GoogleMapComponent = () => {
       ))}
       {selectedMarker && (
         <InfoWindow
-          position={{ lat: selectedMarker.lat, lng: selectedMarker.lng }}
+          position={{ lat: selectedMarker.latitude, lng: selectedMarker.longitude }}
           onCloseClick={() => setSelectedMarker(null)}
         >
           <div>
-            <h3>{selectedMarker.info}</h3>
+            <h3>{selectedMarker.name}</h3>
+            <p>Status: {selectedMarker.status ? selectedMarker.status.toString() : 'N/A'}</p>
           </div>
         </InfoWindow>
       )}
       <Polyline
-        path={markerData.map(location => ({ lat: location.lat, lng: location.lng }))}
+        path={locations.map(location => ({ lat: location.latitude, lng: location.longitude }))}
         options={{
           strokeColor: 'black',
           strokeOpacity: 1,
