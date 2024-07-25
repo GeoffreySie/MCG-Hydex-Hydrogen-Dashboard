@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import { data } from '@/data';
 import CollapsibleSidebar from '@/components/passport/CollapsibleList';
 import FullScreenList from '@/components/passport/FullScreenList';
-import SearchBar from '@/components/ui/SearchBar';
 import OutlineButton from './ui/OutlineButton';
 
 const PassportList = () => {

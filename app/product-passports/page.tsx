@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import ProductPassport from "@/components/ProductPassport";
 import React from "react";
 import PassportList from "@/components/PassportList";
+import PassportContainer from "@/components/PassportContainer";
 
 export default function Home() {
   return (
@@ -18,16 +19,7 @@ export default function Home() {
 
         <PassportList/>
 
-        <div className="xl:p-12 lg:p-8 p-4 w-screen h-screen flex flex-col overflow-y-scroll ">
-
-          <div className="mb-4 mt-8 flex items-end gap-2">
-            <h1 className="text-xl font-bold text-neutral-900 dark:text-neutral-100 ">Hydrogen Passport</h1>
-            <h1 className="text-3xl font-bold text-neutral-900 dark:text-neutral-100 ">AD256/0</h1>
-          </div>
-          
-          <ProductPassport/>
-
-        </div>
+        <PassportContainer/>
         
       </div>
     </main>
