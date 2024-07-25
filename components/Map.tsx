@@ -22,7 +22,7 @@ interface Location {
 
 const GoogleMapComponent = () => {
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: process.env.NEXT_PUBLIC_API_KEY, // Ensure your API key is accessible
+    googleMapsApiKey: process.env.NEXT_PUBLIC_API_KEY || '',
   });
 
   // Type the locations state using the Location interface
@@ -33,7 +33,7 @@ const GoogleMapComponent = () => {
     const fetchLocations = async () => {
       try {
         const response = await fetch('/api/locations');
-        const data: Location[] = await response.json(); // Ensure the fetched data is typed
+        const data: Location[] = await response.json(); 
         setLocations(data);
       } catch (error) {
         console.error('Error fetching locations:', error);
@@ -71,7 +71,7 @@ const GoogleMapComponent = () => {
           onClick={() => setSelectedMarker(location)}
           icon={{
             path: window.google.maps.SymbolPath.CIRCLE,
-            fillColor: location.status ? 'green' : 'red', // Example color based on status
+            fillColor: location.status ? 'green' : 'red',
             fillOpacity: 1,
             strokeColor: 'black',
             strokeWeight: 2,

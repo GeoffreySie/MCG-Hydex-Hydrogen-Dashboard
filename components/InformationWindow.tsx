@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { MdExpandLess, MdExpandMore } from "react-icons/md";
 import RouteLocElement from './RouteLocElement';
+import IoTData from './IoTData';
 
 
 
@@ -39,42 +40,47 @@ const InformationWindow = () => {
     miniWindow ? 'h-1/2' : 'h-screen'
   } md:bg-blue-100 md:top-0 md:w-1/4 md:right-0 md:left-auto md:mx-0 md:m-2 md:mr-2 md:rounded-b-2xl`}
 >
-  <div className="flex justify-between space-x-1 pt-2 px-2 bg-orange-200 rounded-t-2xl">
+  <div className="flex justify-between space-x-1 pt-2 px-2 text-black bg-gradient-to-b from-blue-200 to-green-200 rounded-t-2xl">
     <button
-      className={`w-full text-sm rounded-t-md ${activeTab === 'tab1' ? 'bg-blue-100' : 'bg-orange-100'}`}
+      className={`w-full text-sm rounded-t-md ${activeTab === 'tab1' ? 'bg-white' : 'bg-orange-100'}`}
       onClick={() => setActiveTab('tab1')}
     >
       Route
     </button>
     <button
-      className={`w-full text-sm rounded-t-md ${activeTab === 'tab2' ? 'bg-blue-100' : 'bg-orange-100'}`}
+      className={`w-full text-sm rounded-t-md ${activeTab === 'tab2' ? 'bg-white' : 'bg-orange-100'}`}
       onClick={() => setActiveTab('tab2')}
     >
       IoT
     </button>
     <button
-      className={`w-full text-sm rounded-t-md ${activeTab === 'tab3' ? 'bg-blue-100' : 'bg-orange-100'}`}
+      className={`w-full text-sm rounded-t-md ${activeTab === 'tab3' ? 'bg-white' : 'bg-orange-100'}`}
       onClick={() => setActiveTab('tab3')}
     >
       DDP
     </button>
     <button
-      className="bg-blue-400 rounded-full"
+      className="bg-white rounded-full"
       onClick={() => setMiniWindow(!miniWindow)}
     >
       <MdExpandMore className={`${miniWindow ? 'hidden' : 'block'}`} />
       <MdExpandLess className={`${miniWindow ? 'block' : 'hidden'}`} />
     </button>
   </div>
-  <div className="h-full overflow-y-auto bg-blue-100 p-4 text-black">
-    {activeTab === 'tab1' && <div className=''>
-      <h1>Content for Tab 1</h1>
+
+
+  <div className="h-full overflow-y-auto bg-white text-black">
+
+    {activeTab === 'tab1' && <div className='p-4'>
       {locations.map((location) => (
         <RouteLocElement key={location._id} location={location} />
       ))}
-      
       </div>}
-    {activeTab === 'tab2' && <div>Content for Tab 2</div>}
+
+    {activeTab === 'tab2' && <div className='p-1'>
+      <IoTData />
+      </div>}
+
     {activeTab === 'tab3' && <div>Content for Tab 3</div>}
   </div>
 </div>
