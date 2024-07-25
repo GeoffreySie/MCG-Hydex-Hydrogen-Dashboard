@@ -1,7 +1,7 @@
 import Image from "next/image";
 import SidebarMenu from "@/components/SidebarMenu";
 import { cn } from "@/lib/utils";
-import DppDashboard from "@/components/DppDashboard";
+import DppDashboard from "@/components/ProductPassport";
 
 export default function Home() {
   return (

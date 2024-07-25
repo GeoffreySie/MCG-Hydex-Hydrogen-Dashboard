@@ -1,0 +1,19 @@
+{
+    "id": "AD256/0",
+    "carbonIntensity": "3.12 CO2-eq/kg H2",
+    "production": "1.32 CO2-eq/kg H2",
+    "compressionAndStorage": "1.32 CO2-eq/kg H2",
+    "transport": "1.32 CO2-eq/kg H2",
+    "endUse": "1.32 CO2-eq/kg H2",
+    "productionGHGEmissionsClass": "B",
+    "renewableOrigin": true,
+    "renewableEnergySource": "Wind",
+    "geographicalCorrelation": false,
+    "renewablesAdditionality": true,
+    "temporalCorrelation": true,
+    "wasteManagement": "ISO 14001",
+    "waterConsumption": "WORLD Standard",
+    "mineralInput": "WORLD Standard",
+    "socioEconomicImpact": "WORLD Standard",
+    "landUse": "WORLD Standard"
+}
