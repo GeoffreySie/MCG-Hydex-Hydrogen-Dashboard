@@ -1,16 +1,17 @@
-
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import SearchBar from '@/components/ui/SearchBar';
 import PassportItem from './PassportItem';
 import { IconX } from '@tabler/icons-react';
+import { ProductData } from '@/passport-types';
 
 interface FullScreenListProps {
   isOpen: boolean;
   setIsOpen: (open: boolean) => void;
   searchTerm: string;
   handleSearchChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  filteredData: Array<{ id: string }>;
+  filteredData: ProductData[];
+  onPassportClick: (passport: ProductData) => void;
 }
 
 const FullScreenList: React.FC<FullScreenListProps> = ({
@@ -18,7 +19,8 @@ const FullScreenList: React.FC<FullScreenListProps> = ({
   setIsOpen,
   searchTerm,
   handleSearchChange,
-  filteredData
+  filteredData,
+  onPassportClick
 }) => (
   <AnimatePresence>
     {isOpen && (
@@ -54,7 +56,11 @@ const FullScreenList: React.FC<FullScreenListProps> = ({
         <ul className="w-full mt-4">
           <AnimatePresence>
             {filteredData.map((productPassport) => (
-              <PassportItem key={productPassport.id} id={productPassport.id} />
+              <PassportItem 
+                key={productPassport.id} 
+                passport={productPassport} 
+                onClick={() => onPassportClick(productPassport)} 
+              />
             ))}
           </AnimatePresence>
         </ul>
