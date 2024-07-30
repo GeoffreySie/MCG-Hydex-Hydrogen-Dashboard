@@ -1,20 +1,27 @@
-import Image from "next/image";
-import SidebarMenu from "@/components/SidebarMenu";
-import { cn } from "@/lib/utils";
-import DppDashboard from "@/components/ProductPassport";
+// app/dashboard/page.tsx
+"use client";
+import InfoWindow from '@/components/InformationWindow';
+import Map from '@/components/Map';
+import SidebarMenu from '@/components/SidebarMenu';
+import PassportList from '@/components/PassportList';
 
-export default function Home() {
+const DashboardPage = () => {
   return (
-    <main className="">
-      <div
-      className={cn(
-        "rounded-md flex flex-col md:flex-row bg-gray-100 dark:bg-neutral-800 w-full flex-1 mx-auto border border-neutral-200 dark:border-neutral-700 overflow-hidden",
-        "h-screen"
-      )}
-      >
-        <SidebarMenu/>
-        <h1>Map</h1>
-      </div>
+    <main> 
+    <div className='fixed h-full z-10 rounded-md flex flex-col md:flex-row w-max flex-1 mx-auto overflow-hidden",
+      "h-screen'>
+      <SidebarMenu />
+      <PassportList />
+    </div>
+    <div className='flex'>
+      <InfoWindow />
+    </div>
+    <div className='w-screen h-screen'>
+        <Map />
+    </div>
     </main>
   );
-}
+};
+
+export default DashboardPage;
+
