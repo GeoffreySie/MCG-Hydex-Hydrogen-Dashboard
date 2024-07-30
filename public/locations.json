@@ -1,0 +1,64 @@
+{
+    "locations": [
+      {
+        "_id": "60f1a5c86d1c7a001f3e5a1a",
+        "name": "Central Park",
+        "latitude": 40.7829,
+        "longitude": -73.9654
+      },
+      {
+        "_id": "60f1a5c86d1c7a001f3e5a1b",
+        "name": "Eiffel Tower",
+        "latitude": 48.8584,
+        "longitude": 2.2945
+      },
+      {
+        "_id": "60f1a5c86d1c7a001f3e5a1c",
+        "name": "Sydney Opera House",
+        "latitude": -33.8568,
+        "longitude": 151.2153
+      },
+      {
+        "_id": "60f1a5c86d1c7a001f3e5a1d",
+        "name": "Mount Fuji",
+        "latitude": 35.3606,
+        "longitude": 138.7274
+      },
+      {
+        "_id": "60f1a5c86d1c7a001f3e5a1e",
+        "name": "Machu Picchu",
+        "latitude": -13.1631,
+        "longitude": -72.5450
+      },
+      {
+        "_id": "60f1a5c86d1c7a001f3e5a1f",
+        "name": "Taj Mahal",
+        "latitude": 27.1751,
+        "longitude": 78.0421
+      },
+      {
+        "_id": "60f1a5c86d1c7a001f3e5a20",
+        "name": "Great Wall of China",
+        "latitude": 40.4319,
+        "longitude": 116.5704
+      },
+      {
+        "_id": "60f1a5c86d1c7a001f3e5a21",
+        "name": "Colosseum",
+        "latitude": 41.8902,
+        "longitude": 12.4922
+      },
+      {
+        "_id": "60f1a5c86d1c7a001f3e5a22",
+        "name": "Petra",
+        "latitude": 30.3285,
+        "longitude": 35.4444
+      },
+      {
+        "_id": "60f1a5c86d1c7a001f3e5a23",
+        "name": "Christ the Redeemer",
+        "latitude": -22.9519,
+        "longitude": -43.2105
+      }
+    ]
+  }

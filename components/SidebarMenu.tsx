@@ -63,7 +63,7 @@ const SidebarMenu = () => {
                 <SidebarLink
                 link={{
                     label: "Clinton Liu",
-                    href: "#",
+                    href: "/profile",
                     icon: <UserAvatar/>,
                 }}
                 />
