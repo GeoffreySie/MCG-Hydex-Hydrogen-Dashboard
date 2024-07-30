@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { MdExpandLess, MdExpandMore } from "react-icons/md";
 import RouteLocElement from './RouteLocElement';
 import IoTData from './IoTData';
+import LoadingScreen from './LoadingScreen';
 
 
 
@@ -10,6 +11,8 @@ const InformationWindow = () => {
   const [miniWindow, setMiniWindow] = useState(true);
 
   const [locations, setLocations] = useState<Location[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  
 
   interface Location {
     _id: string;
@@ -27,12 +30,17 @@ const InformationWindow = () => {
         setLocations(data);
       } catch (error) {
         console.error('Error fetching locations:', error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
     fetchLocations();
   }, []);
 
+  if(isLoading){
+    return <LoadingScreen />;
+  }
 
   return (
     <div

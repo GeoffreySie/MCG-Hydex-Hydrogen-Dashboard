@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
+import LoadingScreen from './LoadingScreen';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
@@ -34,7 +35,7 @@ const IoTData: React.FC = () => {
   }, []);
 
   if (!data) {
-    return <div className="flex justify-center items-center h-screen">Loading...</div>;
+    return <LoadingScreen/>;
   }
 
   const days = Array.from(new Set(data.pressure.flatMap(Object.keys)));

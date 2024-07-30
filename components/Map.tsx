@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { GoogleMap, useLoadScript, Marker, InfoWindow, Polyline } from '@react-google-maps/api';
+import LoadingScreen from './LoadingScreen';
 
 const containerStyle = {
   width: '100vw',
@@ -44,7 +45,7 @@ const GoogleMapComponent = () => {
   }, []);
 
   if (!isLoaded) {
-    return <div>Loading...</div>;
+    return <LoadingScreen/>;
   }
 
   return (
