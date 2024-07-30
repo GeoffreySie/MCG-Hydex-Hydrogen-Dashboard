@@ -1,12 +1,17 @@
 "use client";
 
 import React, { useState } from 'react';
-import { data } from '@/data';
+import { ProductData } from '@/passport-types';
 import CollapsibleSidebar from '@/components/passport/CollapsibleList';
 import FullScreenList from '@/components/passport/FullScreenList';
 import OutlineButton from './ui/OutlineButton';
 
-const PassportList = () => {
+interface PassportListProps {
+  data: ProductData[];
+  onPassportClick: (passport: ProductData) => void;
+}
+
+const PassportList: React.FC<PassportListProps> = ({ data, onPassportClick }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -33,6 +38,7 @@ const PassportList = () => {
         searchTerm={searchTerm}
         handleSearchChange={handleSearchChange}
         filteredData={filteredData}
+        onPassportClick={onPassportClick}
       />
       
       {/* Full-Screen List for Small Screens */}
@@ -42,6 +48,7 @@ const PassportList = () => {
         searchTerm={searchTerm}
         handleSearchChange={handleSearchChange}
         filteredData={filteredData}
+        onPassportClick={onPassportClick}
       />
     </>
   );
