@@ -12,12 +12,12 @@ const DashboardPage = () => {
       "h-screen'>
       <SidebarMenu />
       <PassportList />
-    </div>
-    <div className='flex'>
-      <InfoWindow />
-    </div>
-    <div className='w-screen h-screen'>
-        <Map />
+      <div className='flex'>
+        <InfoWindow />
+      </div>
+      <div className='w-screen h-screen'>
+          <Map />
+      </div>
     </div>
     </main>
   );

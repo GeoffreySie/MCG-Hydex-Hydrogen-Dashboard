@@ -1,40 +1,51 @@
-// components/ProfileContainer.tsx
+import React, { useState, useEffect } from 'react';
+import { FaUserCircle } from 'react-icons/fa';
+import users from '@/public/users.json'
 
-import React from 'react';
+const ProfileContainer: React.FC = () => {
+  const [user, setUser] = useState(users[0]); // For demo purposes, we'll use the first user
 
-interface ProfileContainerProps {
-  userName: string;
-}
-
-const ProfileContainer: React.FC<ProfileContainerProps> = ({ userName }) => {
   return (
-    <div className="max-w-2xl mx-auto p-4">
+    <div className="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
       <h1 className="text-3xl font-bold mb-6">Profile</h1>
-      <div className="mb-4">
-        <h2 className="text-xl font-semibold">{userName}</h2>
-      </div>
-      <div className="mb-6">
-        <h3 className="text-lg font-medium">User details</h3>
-        <ul className="list-disc list-inside ml-4">
-          <li className="text-blue-500 cursor-pointer">Change email</li>
-          <li className="text-blue-500 cursor-pointer">Change password</li>
-        </ul>
-      </div>
-      <div className="mb-6">
-        <h3 className="text-lg font-medium">Pricing plan</h3>
-        <ul className="list-disc list-inside ml-4">
-          <li className="text-blue-500 cursor-pointer">Change plan</li>
-        </ul>
-      </div>
-      <div className="mb-6">
-        <h3 className="text-lg font-medium">Map settings</h3>
-        <div className="ml-4">
-          <label htmlFor="mode" className="block text-sm font-medium text-gray-700">Change mode</label>
-          <select id="mode" name="mode" className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
-            <option>Light</option>
-            <option>Dark</option>
-            <option>Satellite</option>
-          </select>
+      
+      <div className="bg-white shadow overflow-hidden sm:rounded-lg">
+        <div className="px-4 py-5 sm:px-6">
+          <div className="flex items-center">
+            <FaUserCircle className="text-4xl text-gray-500 mr-4" />
+            <h2 className="text-2xl font-semibold text-gray-900">{user.fullName}</h2>
+          </div>
+          <div className="flex items-center justify-between text-sm mt-4">
+            <p className="mt-1 max-w-2xl text-gray-500">{user.email}</p>
+            <button className="text-blue-600 hover:text-blue-800">Change email</button>
+          </div>
+          <button className="mt-2 text-blue-600 hover:text-blue-800 text-sm">Change password</button>
+        </div>
+        <div className="border-t border-gray-200">
+          <dl className="grid grid-cols-1 sm:grid-cols-3">
+            <div className="bg-gray-50 px-4 py-5 sm:px-6">
+              <dt className="text-sm font-medium text-gray-500">Current Plan</dt>
+              <dd className="mt-1 flex items-center text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                {user.currentPlan}
+                <button className="ml-4 text-blue-600 hover:text-blue-800">Change plan</button>
+              </dd>
+            </div>
+            <div className="bg-white px-4 py-5 sm:px-6">
+              <dt className="text-sm font-medium text-gray-500">Map Preference</dt>
+              <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                <select
+                  id="mapPreference"
+                  name="mapPreference"
+                  className="mt-1 block w-full pl-3 pr-10 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+                  defaultValue={user.mapPreference}
+                >
+                  <option>Light</option>
+                  <option>Dark</option>
+                  <option>Satellite</option>
+                </select>
+              </dd>
+            </div>
+          </dl>
         </div>
       </div>
     </div>
