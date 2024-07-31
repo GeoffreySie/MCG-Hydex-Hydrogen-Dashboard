@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { MdExpandLess, MdExpandMore } from "react-icons/md";
 import RouteLocElement from './RouteLocElement';
-import IoTData from './IoTData';
 import LoadingScreen from './LoadingScreen';
+import IoTData from './InfoIoT';
+import InfoDPP from './InfoDPP';
 
 
 
@@ -89,7 +90,9 @@ const InformationWindow = () => {
       <IoTData />
       </div>}
 
-    {activeTab === 'tab3' && <div>Content for Tab 3</div>}
+    {activeTab === 'tab3' && <div>
+      <InfoDPP />     
+      </div>}
   </div>
 </div>
   );

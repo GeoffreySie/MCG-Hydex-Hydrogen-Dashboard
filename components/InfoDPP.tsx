@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import ProductPassport from '@/components/ProductPassport';
 import { ProductData } from '@/passport-types';
 
-const PassportContainer: React.FC = () => {
+const DPPData: React.FC = () => {
   const [data, setData] = useState<ProductData | null>(null);
 
   useEffect(() => {
@@ -15,14 +15,14 @@ const PassportContainer: React.FC = () => {
   }, []);
 
   return (
-    <div className="xl:p-12 lg:p-8 p-4 w-screen h-screen flex flex-col overflow-y-scroll">
+    <div className="w-full h-full flex flex-col items-center space-y-4">
       <div className="mb-4 mt-8 flex items-end gap-2">
         <h1 className="text-xl font-bold text-neutral-900 dark:text-neutral-100">Hydrogen Passport</h1>
         <h1 className="text-3xl font-bold text-neutral-900 dark:text-neutral-100">AD256/0</h1>
       </div>
-      {data && <ProductPassport data={data} compact={false}/>}
+      {data && <ProductPassport data={data} compact={true}/>}
     </div>
   );
 };
 
-export default PassportContainer;
+export default DPPData;
