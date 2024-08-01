@@ -34,7 +34,7 @@ const AddRouteContainer: React.FC = () => {
   };
 
   return (
-    <div className="w-screen mx-52 p-6 bg-white rounded-lg shadow-md">
+    <div className="w-screen mx-auto p-6 bg-white rounded-lg shadow-md">
       <h2 className="text-2xl font-bold mb-6">Add New Route</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <div>
