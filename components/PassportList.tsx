@@ -22,7 +22,7 @@ const PassportList = () => {
   return (
     <>
       {/* Button for Small Screens */}
-      <div className="md:hidden absolute top-2 left-4 z-50">
+      <div className="md:hidden absolute top-2 left-4 z-10">
         <OutlineButton title="Show Passports" onClick={() => setIsOpen(true)} />
       </div>
       

@@ -8,16 +8,25 @@ import PassportList from '@/components/PassportList';
 const DashboardPage = () => {
   return (
     <main> 
-    <div className='fixed h-full z-10 rounded-md flex flex-col md:flex-row w-max flex-1 mx-auto overflow-hidden",
-      "h-screen'>
-      <SidebarMenu />
-      <PassportList />
+    {/* <div className='fixed h-full z-10 rounded-md flex flex-col md:flex-row w-max flex-1 mx-auto overflow-hidden",
+      "h-screen'> */}
       <div className='flex'>
-        <InfoWindow />
-      </div>
-      <div className='w-screen h-screen'>
-          <Map />
-      </div>
+        <div className='z-30 h-screen'>
+          <SidebarMenu />
+        </div>
+
+        <div className='z-20'>
+        <PassportList />
+        </div>
+
+        <div className='z-10'>
+          <InfoWindow />
+        </div>
+
+        <div className='absolute w-screen h-screen z-0'>
+            <Map />
+        </div>
+
     </div>
     </main>
   );
