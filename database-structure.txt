@@ -1,0 +1,57 @@
+Locations:
+{
+  "_id": ObjectId,
+  "name": string,
+  "latitude": number,
+  "longitude": number,
+  "status": Date | null
+}
+
+
+IoT Data:
+{
+  "_id": ObjectId,
+  "pressure": DailyReading[],
+  "temperature": DailyReading[],
+  "humidity": DailyReading[],
+  "energy_consumption": DailyReading[],
+}
+
+Product Passport:
+{
+  "_id": ObjectId,
+  "consignmentId": string,
+  "carbonIntensity": number,
+  "production": number,
+  "compressionAndStorage": number,
+  "transport": number,
+  "endUse": number,
+  "renewableEnergySource": string,
+  "geographicalCorrelation": boolean,
+  "renewablesAdditionality": boolean,
+  "temporalCorrelation": boolean,
+  "productionGHGEmissionsClass": string,
+  "wasteManagement": string,
+  "waterConsumption": string,
+  "socioEconomicImpact": string,
+}
+
+Route:
+{
+  "_id": ObjectId,
+  "user": ObjectId,  //_id in User
+  "routeId": string,
+  "startLocationId": ObjectId,  //_id in Location
+  "endLocationId": ObjectId,
+  "passportIds": ObjectId[],  //_id in Product Passport
+  "iotId: ObjectId"  //_id in IoT Data
+}
+
+User:
+{
+  "_id": ObjectId,
+  "googleId": string,
+  "email": string,
+  "name": string,
+}
+

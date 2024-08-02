@@ -46,14 +46,15 @@ const ProductPassport: React.FC<ProductPassportProps> = ({ data }) => {
 
       <div className="w-full h-32 col-span-2 flex">
         <InfoBox title="Production GHG Emissions Class" value={data.productionGHGEmissionsClass} />
-        <BooleanBox title="Renewable Origin" value={data.renewableOrigin} />
+        <InfoBox title="Global Warming Potential" value={data.globalWarmingPotential} />
       </div>
 
       <InfoBox title="Waste Management" value={data.wasteManagement} icon={faRecycle} />
       <InfoBox title="Water Consumption" value={data.waterConsumption} icon={faWater} />
-      <InfoBox title="Mineral Input" value={data.mineralInput} icon={faIndustry} />
-      <InfoBox title="Socio-Economic Impact" value={data.socioEconomicImpact} icon={faUserFriends} />
+      <InfoBox title="Resource Depletion" value={data.resourceDepletion} icon={faIndustry} />
       <InfoBox title="Land Use" value={data.landUse} icon={faLandmark} />
+      <InfoBox title="Ozone Depletion" value={data.ozoneDepletion} icon={faLandmark} />
+      <InfoBox title="Eco Toxicity" value={data.ecoToxicity} icon={faLandmark} />
     </div>
   );
 };
