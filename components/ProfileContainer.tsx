@@ -1,9 +1,43 @@
 import React, { useState, useEffect } from 'react';
 import { FaUserCircle } from 'react-icons/fa';
-import users from '@/public/users.json'
+import LoadingScreen from './LoadingScreen';
+
+interface User {
+  _id: string;
+  name: string;
+  email: string;
+  userPlan: string;
+  products: string[];
+}
 
 const ProfileContainer: React.FC = () => {
-  const [user, setUser] = useState(users[0]); // For demo purposes, we'll use the first user
+  const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const response = await fetch('/api/users');
+        if (!response.ok) {
+          throw new Error('Failed to fetch user data');
+        }
+        const userData = await response.json();
+        setUser(userData);
+      } catch (err) {
+        setError('Error fetching user data');
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUser();
+  }, []);
+
+  if (loading) return <LoadingScreen />;
+  if (error) return <div>Error: {error}</div>;
+  if (!user) return <div>No user data found</div>;
 
   return (
     <div className="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
@@ -13,7 +47,7 @@ const ProfileContainer: React.FC = () => {
         <div className="px-4 py-5 sm:px-6">
           <div className="flex items-center">
             <FaUserCircle className="text-4xl text-gray-500 mr-4" />
-            <h2 className="text-2xl font-semibold text-gray-900">{user.fullName}</h2>
+            <h2 className="text-2xl font-semibold text-gray-900">{user.name}</h2>
           </div>
           <div className="flex items-center justify-between text-sm mt-4">
             <p className="mt-1 max-w-2xl text-gray-500">{user.email}</p>
@@ -26,7 +60,7 @@ const ProfileContainer: React.FC = () => {
             <div className="bg-gray-50 px-4 py-5 sm:px-6">
               <dt className="text-sm font-medium text-gray-500">Current Plan</dt>
               <dd className="mt-1 flex items-center text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                {user.currentPlan}
+                {user.userPlan}
                 <button className="ml-4 text-blue-600 hover:text-blue-800">Change plan</button>
               </dd>
             </div>
@@ -37,7 +71,6 @@ const ProfileContainer: React.FC = () => {
                   id="mapPreference"
                   name="mapPreference"
                   className="mt-1 block w-full pl-3 pr-10 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
-                  defaultValue={user.mapPreference}
                 >
                   <option>Light</option>
                   <option>Dark</option>
