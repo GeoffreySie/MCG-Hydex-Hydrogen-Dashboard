@@ -57,7 +57,7 @@ const FullScreenList: React.FC<FullScreenListProps> = ({
           <AnimatePresence>
             {filteredData.map((productPassport) => (
               <PassportItem 
-                key={productPassport.id} 
+                key={productPassport.consignmentId} 
                 passport={productPassport} 
                 onClick={() => onPassportClick(productPassport)} 
               />

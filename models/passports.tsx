@@ -2,7 +2,6 @@ import mongoose, { Schema, Document } from 'mongoose';
 
 interface IPassport extends Document {
   consignmentId: string;
-  carbonIntensity: number;
   production: number;
   compressionAndStorage: number;
   transport: number;
@@ -17,14 +16,13 @@ interface IPassport extends Document {
   waterConsumption: string;
   resourceDepletion: string;
   landUse: string;
-  ozoneDepletion: number;
+  ozoneDepletion: string;
   ecoToxicity: string;
 }
 
 const passportSchema: Schema = new Schema(
   {
     consignmentId: { type: String, required: true },
-    carbonIntensity: { type: Number, required: true },
     production: { type: Number, required: true },
     compressionAndStorage: { type: Number, required: true },
     transport: { type: Number, required: true },
@@ -39,7 +37,7 @@ const passportSchema: Schema = new Schema(
     waterConsumption: { type: String, required: true },
     resourceDepletion: { type: String, required: true },
     landUse: { type: String, required: true },
-    ozoneDepletion: { type: Number, required: true },
+    ozoneDepletion: { type: String, required: true },
     ecoToxicity: { type: String, required: true }
   },
   {

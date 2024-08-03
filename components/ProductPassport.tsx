@@ -9,12 +9,15 @@ interface ProductPassportProps {
 }
 
 const ProductPassport: React.FC<ProductPassportProps> = ({ data }) => {
+
+  const carbonIntensity = data.production + data.compressionAndStorage + data.transport + data.endUse;
+
   return (
     <div className="bg-neutral-50 p-4 max-w-6xl rounded-lg box-border border border-neutral-400 grid md:grid-cols-4 sm:grid-cols-2 gap-4 mr-4">
       <div className="bg-cream w-full h-full p-2 border border-neutral-400 rounded-lg col-span-2 flex flex-col justify-center">
         <div className='mb-4'>
           <h2 className='text-xl font-semibold'>Carbon Intensity</h2>
-          <p className='text-2xl font-semibold'>{data.carbonIntensity} kg CO₂-eq/kg H₂</p>
+          <p className='text-2xl font-semibold'>{carbonIntensity} kg CO₂-eq/kg H₂</p>
         </div>
 
         <div className='w-full grid grid-cols-2 gap-2'>

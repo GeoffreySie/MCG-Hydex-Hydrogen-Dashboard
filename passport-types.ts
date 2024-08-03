@@ -1,7 +1,6 @@
 export interface ProductData {
   id: string;
   consignmentId: string;
-  carbonIntensity: number;
   production: number;
   compressionAndStorage: number;
   transport: number;
@@ -16,6 +15,6 @@ export interface ProductData {
   waterConsumption: string;
   resourceDepletion: string;
   landUse: string;
-  ozoneDepletion: number;
+  ozoneDepletion: string;
   ecoToxicity: string;
 }

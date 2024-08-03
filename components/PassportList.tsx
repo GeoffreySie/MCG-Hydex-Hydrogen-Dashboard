@@ -21,7 +21,7 @@ const PassportList: React.FC<PassportListProps> = ({ data, onPassportClick }) =>
   };
 
   const filteredData = data.filter((productPassport) =>
-    productPassport.id.toLowerCase().includes(searchTerm.toLowerCase())
+    productPassport.consignmentId.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (

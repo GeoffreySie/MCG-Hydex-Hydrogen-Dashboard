@@ -55,7 +55,7 @@ const PassportContainer: React.FC = () => {
       <div className="xl:p-12 lg:p-8 p-4 w-screen h-screen flex flex-col overflow-y-scroll">
         {selectedPassport ? (
           <>
-            <PassportHeader id={selectedPassport.id} /> 
+            <PassportHeader id={selectedPassport.consignmentId} /> 
             <ProductPassport data={selectedPassport} />
           </>
         ) : (

@@ -17,7 +17,7 @@ const PassportItem: React.FC<PassportItemProps> = ({ passport, onClick }) => (
     onClick={onClick}
   >
     <div className="flex-1 text-center">
-      <h3>{passport.id}</h3>
+      <h3>{passport.consignmentId}</h3>
     </div>
   </motion.li>
 );
