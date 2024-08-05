@@ -16,7 +16,7 @@ const DashboardPage = () => {
         </div>
 
         <div className='z-20'>
-        <PassportList />
+        {/* <PassportList data=provide the data here onPassportClick=provide the onPassportClick function here /> */}
         </div>
 
         <div className='z-10'>
