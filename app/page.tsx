@@ -24,7 +24,7 @@ const DashboardPage = () => {
         </div>
 
         <div className='absolute w-screen h-screen z-0'>
-            <Map />
+            <Map currentSelectedProductId={"60d5ecb54f761c001f8e95d5"}/>
         </div>
 
     </div>
