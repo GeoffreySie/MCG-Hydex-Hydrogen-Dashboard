@@ -1,42 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { FaUserCircle } from 'react-icons/fa';
 import LoadingScreen from './LoadingScreen';
+import { useUser } from '../lib/hooks/useUser';
 
-interface User {
-  _id: string;
-  name: string;
-  email: string;
-  userPlan: string;
-  products: string[];
+interface ProfileContainerProps {
+  userId: string;
 }
 
-const ProfileContainer: React.FC = () => {
-  const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+const ProfileContainer: React.FC<ProfileContainerProps> = ({ userId }) => {
+  const { user, isLoading, isError } = useUser(userId);
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const response = await fetch('/api/users');
-        if (!response.ok) {
-          throw new Error('Failed to fetch user data');
-        }
-        const userData = await response.json();
-        setUser(userData);
-      } catch (err) {
-        setError('Error fetching user data');
-        console.error(err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchUser();
-  }, []);
-
-  if (loading) return <LoadingScreen />;
-  if (error) return <div>Error: {error}</div>;
+  if (isLoading) return <LoadingScreen />;
+  if (isError) return <div>Error loading user data</div>;
   if (!user) return <div>No user data found</div>;
 
   return (
