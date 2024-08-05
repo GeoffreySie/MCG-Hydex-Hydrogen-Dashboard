@@ -3,13 +3,15 @@ import { motion, AnimatePresence } from 'framer-motion';
 import SearchBar from '@/components/ui/SearchBar';
 import ToggleButton from '@/components/passport/ToggleButton';
 import PassportItem from '@/components/passport/PassportItem';
+import { ProductData } from '@/passport-types';
 
 interface CollapsibleListProps {
   isCollapsed: boolean;
   toggleCollapse: () => void;
   searchTerm: string;
   handleSearchChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  filteredData: Array<{ id: string }>;
+  filteredData: ProductData[];
+  onPassportClick: (passport: ProductData) => void;
 }
 
 const CollapsibleList: React.FC<CollapsibleListProps> = ({
@@ -17,7 +19,8 @@ const CollapsibleList: React.FC<CollapsibleListProps> = ({
   toggleCollapse,
   searchTerm,
   handleSearchChange,
-  filteredData
+  filteredData,
+  onPassportClick
 }) => (
   <div className="hidden md:flex h-full relative">
     <div className={`flex flex-col items-center transition-all duration-300 ${isCollapsed ? 'w-0 overflow-hidden p-0 m-0' : 'w-72 p-4 border bg-white'}`}>
@@ -37,7 +40,11 @@ const CollapsibleList: React.FC<CollapsibleListProps> = ({
           <ul className="w-full mt-2">
             <AnimatePresence>
               {filteredData.map((productPassport) => (
-                <PassportItem key={productPassport.id} id={productPassport.id} />
+                <PassportItem 
+                  key={productPassport.id} 
+                  passport={productPassport} 
+                  onClick={() => onPassportClick(productPassport)} 
+                />
               ))}
             </AnimatePresence>
           </ul>
