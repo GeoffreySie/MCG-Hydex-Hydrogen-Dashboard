@@ -8,7 +8,7 @@ const DPPData: React.FC = () => {
   const [data, setData] = useState<ProductData | null>(null);
 
   useEffect(() => {
-    fetch('/passport-data1.json')
+    fetch('/passport-data.json')
       .then(response => response.json())
       .then((data: ProductData) => setData(data))
       .catch(error => console.error('Error fetching data:', error));

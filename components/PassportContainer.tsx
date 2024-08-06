@@ -3,46 +3,26 @@
 import React, { useEffect, useState } from 'react';
 import ProductPassport from '@/components/ProductPassport';
 import { ProductData } from '@/passport-types';
-import PassportList from '@/components/PassportList';
-import PassportHeader from '@/components/passport/PassportHeader';
 
 const PassportContainer: React.FC = () => {
-  const [data, setData] = useState<ProductData[]>([]);
-  const [selectedPassport, setSelectedPassport] = useState<ProductData | null>(null);
+  const [data, setData] = useState<ProductData | null>(null);
 
   useEffect(() => {
     fetch('/passport-data.json')
       .then(response => response.json())
-      .then((data: ProductData[]) => {
-        setData(data);
-        setSelectedPassport(data[0]); // Set the default selected passport
-      })
+      .then((data: ProductData) => setData(data))
       .catch(error => console.error('Error fetching data:', error));
   }, []);
 
-  const handlePassportClick = (passport: ProductData) => {
-    setSelectedPassport(passport);
-  };
-
   return (
-    <div className='flex flex-row'>
-      <PassportList 
-        data={data} 
-        onPassportClick={handlePassportClick} 
-      />
-
-      <div className="xl:p-12 lg:p-8 p-4 w-screen h-screen flex flex-col overflow-y-scroll">
-        {selectedPassport && (
-          <>
-            <PassportHeader id={selectedPassport.id} /> 
-            <ProductPassport data={selectedPassport} />
-          </>
-        )}
+    <div className="xl:p-12 lg:p-8 p-4 w-screen h-screen flex flex-col overflow-y-scroll">
+      <div className="mb-4 mt-8 flex items-end gap-2">
+        <h1 className="text-xl font-bold text-neutral-900 dark:text-neutral-100">Hydrogen Passport</h1>
+        <h1 className="text-3xl font-bold text-neutral-900 dark:text-neutral-100">AD256/0</h1>
       </div>
-      {selectedPassport && <ProductPassport data={selectedPassport} compact={false}/>}
+      {data && <ProductPassport data={data} compact={false}/>}
     </div>
   );
 };
 
 export default PassportContainer;
-
