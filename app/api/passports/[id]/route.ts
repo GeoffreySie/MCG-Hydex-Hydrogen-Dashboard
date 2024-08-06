@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import Passport from '@/models/passports';
-import connectMongodb from '@/lib/mongodb';
+import clientPromise from '@/lib/mongodb';
+import { ObjectId } from 'mongodb';
 
 type Params = {
     id: string;
@@ -35,38 +35,43 @@ export async function PUT(request: NextRequest, { params }: { params: Params }):
         if (!consignmentId) {
             return NextResponse.json({ message: 'Required fields are missing' }, { status: 400 });
         }
-        
-        await connectMongodb();
-        const updatedPassport = await Passport.findByIdAndUpdate(
-            id,
+
+        const client = await clientPromise;
+        const db = client.db("test");
+        const passportsCollection = db.collection("passports");
+
+        const updatedPassport = await passportsCollection.findOneAndUpdate(
+            { _id: new ObjectId(id) },
             {
-                consignmentId,
-                production,
-                compressionAndStorage,
-                transport,
-                endUse,
-                renewableEnergySource,
-                geographicalCorrelation,
-                renewablesAdditionality,
-                temporalCorrelation,
-                productionGHGEmissionsClass,
-                globalWarmingPotential,
-                wasteManagement,
-                waterConsumption,
-                resourceDepletion,
-                landUse,
-                ozoneDepletion,
-                ecoToxicity,
+                $set: {
+                    consignmentId,
+                    production,
+                    compressionAndStorage,
+                    transport,
+                    endUse,
+                    renewableEnergySource,
+                    geographicalCorrelation,
+                    renewablesAdditionality,
+                    temporalCorrelation,
+                    productionGHGEmissionsClass,
+                    globalWarmingPotential,
+                    wasteManagement,
+                    waterConsumption,
+                    resourceDepletion,
+                    landUse,
+                    ozoneDepletion,
+                    ecoToxicity,
+                },
             },
-            { new: true }
+            { returnDocument: 'after' }
         );
 
-        if (!updatedPassport) {
+        if (!updatedPassport || !updatedPassport.value) {
             return NextResponse.json({ message: 'Passport not found' }, { status: 404 });
         }
 
-        return NextResponse.json({ message: 'Passport updated', passport: updatedPassport }, { status: 200 });
-        
+        return NextResponse.json({ message: 'Passport updated', passport: updatedPassport.value }, { status: 200 });
+
     } catch (error) {
         return NextResponse.json({ message: 'Error updating passport', error }, { status: 500 });
     }
@@ -77,8 +82,11 @@ export async function GET(request: NextRequest, { params }: { params: Params }):
     const { id } = params;
 
     try {
-        await connectMongodb();
-        const passport = await Passport.findById(id);
+        const client = await clientPromise;
+        const db = client.db("test");
+        const passportsCollection = db.collection("passports");
+
+        const passport = await passportsCollection.findOne({ _id: new ObjectId(id) });
 
         if (!passport) {
             return NextResponse.json({ message: 'Passport not found' }, { status: 404 });
@@ -98,12 +106,14 @@ export async function DELETE(request: NextRequest, { params }: { params: Params 
         return NextResponse.json({ message: 'Missing id' }, { status: 400 });
     }
 
-    await connectMongodb();
-
     try {
-        const deletedPassport = await Passport.findByIdAndDelete(id);
+        const client = await clientPromise;
+        const db = client.db("test");
+        const passportsCollection = db.collection("passports");
 
-        if (!deletedPassport) {
+        const deletedPassport = await passportsCollection.findOneAndDelete({ _id: new ObjectId(id) });
+
+        if (!deletedPassport || !deletedPassport.value) {
             return NextResponse.json({ message: 'Passport not found' }, { status: 404 });
         }
 
