@@ -25,11 +25,11 @@ interface Product {
   route: RoutePoint[];
 }
 
-interface GoogleMapComponentProps {
+interface MapProps {
   currentSelectedProductId: string | null;
 }
 
-const GoogleMapComponent: React.FC<GoogleMapComponentProps> = ({ currentSelectedProductId }) => {
+const Map: React.FC<MapProps> = ({ currentSelectedProductId }) => {
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.NEXT_PUBLIC_API_KEY || '',
   });
@@ -116,4 +116,4 @@ const GoogleMapComponent: React.FC<GoogleMapComponentProps> = ({ currentSelected
   );
 };
 
-export default GoogleMapComponent;
+export default Map;

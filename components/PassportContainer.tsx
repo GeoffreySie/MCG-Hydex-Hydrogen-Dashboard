@@ -39,7 +39,7 @@ const PassportContainer: React.FC = () => {
           </>
         )}
       </div>
-      {data && <ProductPassport data={data} compact={false}/>}
+      {selectedPassport && <ProductPassport data={selectedPassport} compact={false}/>}
     </div>
   );
 };

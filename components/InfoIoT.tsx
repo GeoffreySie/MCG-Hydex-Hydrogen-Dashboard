@@ -17,28 +17,61 @@ interface CryogenicTankerData {
   energy_consumption: DailyReading[];
 }
 
-const IoTData: React.FC = () => {
+interface IoTDataProps {
+  currentSelectedProductId: string | null;
+}
+
+const IoTData: React.FC<IoTDataProps> = ({ currentSelectedProductId }) => {
   const [data, setData] = useState<CryogenicTankerData | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('/api/iot-data');
-        const result = await response.json();
-        setData(result[0]); // Assuming we're displaying the first document
-      } catch (error) {
-        console.error('Failed to fetch IoT data:', error);
+    const fetchIoTData = async () => {
+      if (currentSelectedProductId) {
+        setIsLoading(true);
+        setError(null);
+        try {
+          console.log('Fetching IoT data for product:', currentSelectedProductId);
+          const response = await fetch(`/api/products/${currentSelectedProductId}/iot-data`);
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          const result = await response.json();
+          console.log('Fetched IoT data:', result);
+          setData(result);
+        } catch (error) {
+          console.error('Failed to fetch IoT data:', error);
+          setError('Failed to fetch IoT data. Please try again.');
+          setData(null);
+        } finally {
+          setIsLoading(false);
+        }
+      } else {
+        console.log('No product ID provided');
+        setData(null);
+        setError('No product selected');
+        setIsLoading(false);
       }
     };
 
-    fetchData();
-  }, []);
+    fetchIoTData();
+  }, [currentSelectedProductId]);
+
+  if (isLoading) {
+    return <LoadingScreen />;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
   if (!data) {
-    return <LoadingScreen/>;
+    return <div>No IoT data available for this product.</div>;
   }
 
   const days = Array.from(new Set(data.pressure.flatMap(Object.keys)));
+
   const createChartData = (label: string, dataSet: DailyReading[], color: string) => ({
     labels: days,
     datasets: [
