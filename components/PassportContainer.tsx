@@ -46,13 +46,14 @@ const PassportContainer: React.FC = () => {
   };
 
   return (
-    <div className='flex flex-row'>
+    <div className='flex flex-row w-screen h-screen'>
       <PassportList 
         data={data} 
         onPassportClick={handlePassportClick} 
       />
-
-      <div className="xl:p-12 lg:p-8 p-4 w-screen h-screen flex flex-col overflow-y-scroll">
+  
+      <div className="p-2 w-screen h-screen flex flex-col overflow-y-scroll items-center mx-auto">
+        <div className='text-left p-2 mt-4 flex flex-col '>
         {selectedPassport ? (
           <>
             <PassportHeader id={selectedPassport.consignmentId} /> 
@@ -61,6 +62,7 @@ const PassportContainer: React.FC = () => {
         ) : (
           <div>No passports available</div>
         )}
+        </div>
       </div>
     </div>
   );
