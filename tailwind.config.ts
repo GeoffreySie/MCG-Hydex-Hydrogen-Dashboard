@@ -54,6 +54,7 @@ const config = {
         },
         cream: '#FFFBF1',
         lime: '#CFFF93',
+        lightblue: '#92DBFF',
 
       },
       borderRadius: {

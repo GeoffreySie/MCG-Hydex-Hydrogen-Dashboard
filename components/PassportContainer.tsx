@@ -11,9 +11,30 @@ const PassportContainer: React.FC = () => {
   const [selectedPassport, setSelectedPassport] = useState<ProductData | null>(null);
 
   useEffect(() => {
-    fetch('/passport-data.json')
+    fetch('http://localhost:3000/api/passports')
       .then(response => response.json())
-      .then((data: ProductData[]) => {
+      .then((result) => {
+        const data: ProductData[] = result.passports.map((passport:any) => ({
+          id: passport._id,
+          consignmentId: passport.consignmentId,
+          carbonIntensity: passport.carbonIntensity,
+          production: passport.production,
+          compressionAndStorage: passport.compressionAndStorage,
+          transport: passport.transport,
+          endUse: passport.endUse,
+          renewableEnergySource: passport.renewableEnergySource,
+          geographicalCorrelation: passport.geographicalCorrelation,
+          renewablesAdditionality: passport.renewablesAdditionality,
+          temporalCorrelation: passport.temporalCorrelation,
+          productionGHGEmissionsClass: passport.productionGHGEmissionsClass,
+          globalWarmingPotential: passport.globalWarmingPotential,
+          wasteManagement: passport.wasteManagement,
+          waterConsumption: passport.waterConsumption,
+          resourceDepletion: passport.resourceDepletion,
+          landUse: passport.landUse,
+          ozoneDepletion: passport.ozoneDepletion,
+          ecoToxicity: passport.ecoToxicity,
+        }));
         setData(data);
         setSelectedPassport(data[0]); // Set the default selected passport
       })
@@ -25,24 +46,26 @@ const PassportContainer: React.FC = () => {
   };
 
   return (
-    <div className='flex flex-row'>
+    <div className='flex flex-row w-screen h-screen'>
       <PassportList 
         data={data} 
         onPassportClick={handlePassportClick} 
       />
-
-      <div className="xl:p-12 lg:p-8 p-4 w-screen h-screen flex flex-col overflow-y-scroll">
-        {selectedPassport && (
+  
+      <div className="p-2 w-screen h-screen flex flex-col overflow-y-scroll items-center mx-auto">
+        <div className='text-left p-2 mt-4 flex flex-col '>
+        {selectedPassport ? (
           <>
-            <PassportHeader id={selectedPassport.id} /> 
+            <PassportHeader id={selectedPassport.consignmentId} /> 
             <ProductPassport data={selectedPassport} />
           </>
+        ) : (
+          <div>No passports available</div>
         )}
+        </div>
       </div>
-      {data && <ProductPassport data={data} compact={false}/>}
     </div>
   );
 };
 
 export default PassportContainer;
-

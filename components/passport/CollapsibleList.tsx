@@ -41,7 +41,7 @@ const CollapsibleList: React.FC<CollapsibleListProps> = ({
             <AnimatePresence>
               {filteredData.map((productPassport) => (
                 <PassportItem 
-                  key={productPassport.id} 
+                  key={productPassport.consignmentId} 
                   passport={productPassport} 
                   onClick={() => onPassportClick(productPassport)} 
                 />
