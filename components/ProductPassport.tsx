@@ -1,6 +1,6 @@
 import React from 'react';
 import { ProductData } from "@/passport-types";
-import { faRecycle, faWater, faIndustry, faLandmark, faUserFriends } from '@fortawesome/free-solid-svg-icons';
+import { faRecycle, faWater, faIndustry, faLandmark, faSun, faSkullCrossbones } from '@fortawesome/free-solid-svg-icons';
 import InfoBox from '@/components/passport/ui/InfoBox';
 import BooleanBox from '@/components/passport/ui/BooleanBox';
 import { light } from '@fortawesome/fontawesome-svg-core/import.macro';
@@ -62,8 +62,8 @@ const ProductPassport: React.FC<ProductPassportProps> = ({ data }) => {
       <InfoBox title="Water Consumption" value={data.waterConsumption} icon={faWater} color={lime}/>
       <InfoBox title="Resource Depletion" value={data.resourceDepletion} icon={faIndustry} color={lime}/>
       <InfoBox title="Land Use" value={data.landUse} icon={faLandmark} color={lime}/>
-      <InfoBox title="Ozone Depletion" value={data.ozoneDepletion} icon={faLandmark} color={lime}/>
-      <InfoBox title="Eco Toxicity" value={data.ecoToxicity} icon={faLandmark} color={lime}/>
+      <InfoBox title="Ozone Depletion" value={data.ozoneDepletion} icon={faSun} color={lime}/>
+      <InfoBox title="Eco Toxicity" value={data.ecoToxicity} icon={faSkullCrossbones} color={lime}/>
     </div>
   );
 };
