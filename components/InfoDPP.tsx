@@ -20,7 +20,7 @@ const DPPData: React.FC = () => {
         <h1 className="text-xl font-bold text-neutral-900 dark:text-neutral-100">Hydrogen Passport</h1>
         <h1 className="text-3xl font-bold text-neutral-900 dark:text-neutral-100">AD256/0</h1>
       </div>
-      {data && <ProductPassport data={data} compact={true}/>}
+      {data && <ProductPassport currentSelectedProductId={"60d5ecb54f761c001f8e95d4"} compact={true}/>}
     </div>
   );
 };

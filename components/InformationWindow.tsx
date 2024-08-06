@@ -78,7 +78,7 @@ const InformationWindow: React.FC<InformationWindowProps> = ({ currentSelectedPr
           className={`w-full text-sm rounded-t-md ${activeTab === 'tab3' ? 'bg-white' : 'bg-stone-300'}`}
           onClick={() => setActiveTab('tab3')}
         >
-          DDP
+          DPP
         </button>
         <button
           className="bg-white rounded-full"

@@ -1,12 +1,61 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import LoadingScreen from '@/components/LoadingScreen';
 import { ProductData } from "@/passport-types";
 
 interface ProductPassportProps {
-  data: ProductData;
+  currentSelectedProductId: string | null;
   compact?: boolean;
 }
 
-const ProductPassport: React.FC<ProductPassportProps> = ({ data, compact = false }) => {
+const ProductPassport: React.FC<ProductPassportProps> = ({ currentSelectedProductId, compact = false }) => {
+  const [data, setData] = useState<ProductData | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchPassportData = async () => {
+      if (currentSelectedProductId) {
+        setIsLoading(true);
+        setError(null);
+        try {
+          const response = await fetch(`/api/products/${currentSelectedProductId}/passport`);
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          const productData = await response.json();
+          if (productData.passportId && productData.passportId.length > 0) {
+            setData(productData.passportId[0]);
+          } else {
+            setError('No passport data found for this product.');
+          }
+        } catch (error) {
+          console.error('Failed to fetch passport data:', error);
+          setError('Failed to fetch passport data. Please try again.');
+        } finally {
+          setIsLoading(false);
+        }
+      } else {
+        setData(null);
+        setError('No product selected');
+        setIsLoading(false);
+      }
+    };
+
+    fetchPassportData();
+  }, [currentSelectedProductId]);
+
+  if (isLoading) {
+    return <LoadingScreen />;
+  }
+
+  if (error) {
+    return <div className="p-4 text-red-500">{error}</div>;
+  }
+
+  if (!data) {
+    return null;
+  }
+
   const containerClass = compact
     ? "bg-neutral-50 p-2 rounded-lg box-border border border-neutral-400 grid grid-cols-1 gap-2 text-sm"
     : "bg-neutral-50 p-4 max-w-7xl rounded-lg box-border border border-neutral-400 grid md:grid-cols-4 sm:grid-cols-2 gap-4";
@@ -27,7 +76,7 @@ const ProductPassport: React.FC<ProductPassportProps> = ({ data, compact = false
     <div className={containerClass}>
       <div className={`${sectionClass} ${compact ? '' : 'col-span-2'}`}>
         <h2 className="font-semibold">Carbon Intensity</h2>
-        <p>{data.carbonIntensity}</p>
+        <p>{data.globalWarmingPotential}</p>
 
         <div className='w-full grid grid-cols-2 gap-2 mt-2'>
           <div>
@@ -74,8 +123,8 @@ const ProductPassport: React.FC<ProductPassportProps> = ({ data, compact = false
           <p>{data.productionGHGEmissionsClass}</p>
         </div>
         <div className={`${sectionClass} ${compact ? 'w-full mt-2' : 'w-1/2 ml-1'}`}>
-          <h3 className="font-semibold">Renewable Origin</h3>
-          <p>{data.renewableOrigin ? 'Yes' : 'No'}</p>
+          <h3 className="font-semibold">Global Warming Potential</h3>
+          <p>{data.globalWarmingPotential}</p>
         </div>
       </div>
 
@@ -88,16 +137,20 @@ const ProductPassport: React.FC<ProductPassportProps> = ({ data, compact = false
         <p>{data.waterConsumption}</p>
       </div>
       <div className={greenSectionClass}>
-        <h3 className="font-semibold">Mineral Input</h3>
-        <p>{data.mineralInput}</p>
-      </div>
-      <div className={greenSectionClass}>
-        <h3 className="font-semibold">Socio-Economic Impact</h3>
-        <p>{data.socioEconomicImpact}</p>
+        <h3 className="font-semibold">Resource Depletion</h3>
+        <p>{data.resourceDepletion}</p>
       </div>
       <div className={greenSectionClass}>
         <h3 className="font-semibold">Land Use</h3>
         <p>{data.landUse}</p>
+      </div>
+      <div className={greenSectionClass}>
+        <h3 className="font-semibold">Ozone Depletion</h3>
+        <p>{data.ozoneDepletion}</p>
+      </div>
+      <div className={greenSectionClass}>
+        <h3 className="font-semibold">Eco Toxicity</h3>
+        <p>{data.ecoToxicity}</p>
       </div>
     </div>
   );

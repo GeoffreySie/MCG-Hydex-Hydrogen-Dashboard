@@ -17,7 +17,7 @@ export default function Home() {
       >
         <SidebarMenu/>
 
-        <PassportContainer/>
+        <PassportContainer currentSelectedProductId={"60d5ecb54f761c001f8e95d4"}/>
         
       </div>
     </main>
