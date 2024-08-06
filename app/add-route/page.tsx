@@ -2,6 +2,7 @@ import Image from "next/image";
 import SidebarMenu from "@/components/SidebarMenu";
 import { cn } from "@/lib/utils";
 import DppDashboard from "@/components/ProductPassport";
+import AddRouteContainer from "@/components/AddRouteContainer";
 
 export default function Home() {
   return (
@@ -13,7 +14,7 @@ export default function Home() {
       )}
       >
         <SidebarMenu/>
-        <h1>Add</h1>
+        <AddRouteContainer />
       </div>
     </main>
   );

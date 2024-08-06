@@ -1,0 +1,17 @@
+[
+    {
+      "id": 1,
+      "fullName": "Clinton Liu",
+      "email": "cliu@vuila.ca",
+      "currentPlan": "Pro",
+      "mapPreference": "Dark"
+    },
+    {
+      "id": 2,
+      "fullName": "Jane Smith",
+      "email": "jane.smith@example.com",
+      "currentPlan": "Basic",
+      "mapPreference": "Light"
+    }
+  ]
+  

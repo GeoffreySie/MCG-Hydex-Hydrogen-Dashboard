@@ -7,6 +7,7 @@ import { light } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 interface ProductPassportProps {
   data: ProductData;
+  compact?: boolean;
 }
 
 const ProductPassport: React.FC<ProductPassportProps> = ({ data }) => {
@@ -24,7 +25,7 @@ const ProductPassport: React.FC<ProductPassportProps> = ({ data }) => {
           <h2 className='text-xl font-semibold'>Carbon Intensity</h2>
           <p className='text-2xl font-semibold'>{carbonIntensity} kg CO₂-eq/kg H₂</p>
         </div>
-
+  
         <div className='w-full grid grid-cols-2 gap-2'>
           <div>
             <h2 className='text-sm font-semibold'>Production</h2>

@@ -12,40 +12,51 @@ const center = {
   lng: -0.1278
 };
 
-// Define the Location interface
-interface Location {
-  _id: string;
-  name: string;
+interface RoutePoint {
   latitude: number;
   longitude: number;
+  name: string;
   status: Date | null;
 }
 
-const GoogleMapComponent = () => {
+interface Product {
+  _id: string;
+  name: string;
+  route: RoutePoint[];
+}
+
+interface GoogleMapComponentProps {
+  currentSelectedProductId: string | null;
+}
+
+const GoogleMapComponent: React.FC<GoogleMapComponentProps> = ({ currentSelectedProductId }) => {
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.NEXT_PUBLIC_API_KEY || '',
   });
 
-  // Type the locations state using the Location interface
-  const [locations, setLocations] = useState<Location[]>([]);
-  const [selectedMarker, setSelectedMarker] = useState<Location | null>(null);
+  const [currentProduct, setCurrentProduct] = useState<Product | null>(null);
+  const [selectedMarker, setSelectedMarker] = useState<RoutePoint | null>(null);
 
   useEffect(() => {
-    const fetchLocations = async () => {
-      try {
-        const response = await fetch('/api/locations');
-        const data: Location[] = await response.json(); 
-        setLocations(data);
-      } catch (error) {
-        console.error('Error fetching locations:', error);
+    const fetchProductRoute = async () => {
+      if (currentSelectedProductId) {
+        try {
+          const response = await fetch(`/api/products/${currentSelectedProductId}`);
+          const data: Product = await response.json();
+          setCurrentProduct(data);
+        } catch (error) {
+          console.error('Error fetching product route:', error);
+        }
+      } else {
+        setCurrentProduct(null);
       }
     };
 
-    fetchLocations();
-  }, []);
+    fetchProductRoute();
+  }, [currentSelectedProductId]);
 
   if (!isLoaded) {
-    return <LoadingScreen/>;
+    return <LoadingScreen />;
   }
 
   return (
@@ -64,15 +75,15 @@ const GoogleMapComponent = () => {
         fullscreenControl: false,
       }}
     >
-      {locations.map((location) => (
+      {currentProduct && currentProduct.route && currentProduct.route.map((point, index) => (
         <Marker
-          key={location._id} // Use the unique ID for the key
-          position={{ lat: location.latitude, lng: location.longitude }}
-          label={location.name}
-          onClick={() => setSelectedMarker(location)}
+          key={`${currentProduct._id}-${index}`}
+          position={{ lat: point.latitude, lng: point.longitude }}
+          label={point.name}
+          onClick={() => setSelectedMarker(point)}
           icon={{
             path: window.google.maps.SymbolPath.CIRCLE,
-            fillColor: location.status ? 'green' : 'red',
+            fillColor: point.status ? 'green' : 'red',
             fillOpacity: 1,
             strokeColor: 'black',
             strokeWeight: 2,
@@ -91,14 +102,16 @@ const GoogleMapComponent = () => {
           </div>
         </InfoWindow>
       )}
-      <Polyline
-        path={locations.map(location => ({ lat: location.latitude, lng: location.longitude }))}
-        options={{
-          strokeColor: 'black',
-          strokeOpacity: 1,
-          strokeWeight: 2,
-        }}
-      />
+      {currentProduct && currentProduct.route && (
+        <Polyline
+          path={currentProduct.route.map(point => ({ lat: point.latitude, lng: point.longitude }))}
+          options={{
+            strokeColor: 'blue',
+            strokeOpacity: 1,
+            strokeWeight: 3,
+          }}
+        />
+      )}
     </GoogleMap>
   );
 };
