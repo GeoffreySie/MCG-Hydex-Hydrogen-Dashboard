@@ -1,13 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ProductData } from '@/passport-types';
 
 interface PassportItemProps {
-  passport: ProductData;
+  productId: string;
   onClick: () => void;
 }
 
-const PassportItem: React.FC<PassportItemProps> = ({ passport, onClick }) => (
+const PassportItem: React.FC<PassportItemProps> = ({ productId, onClick }) => (
   <motion.li
     className="bg-gray-50 hover:bg-gray-100 rounded-lg my-1 p-2 flex items-center justify-center cursor-pointer transform transition-transform duration-300 hover:scale-105"
     initial={{ opacity: 0 }}
@@ -17,7 +16,7 @@ const PassportItem: React.FC<PassportItemProps> = ({ passport, onClick }) => (
     onClick={onClick}
   >
     <div className="flex-1 text-center">
-      <h3>{passport.id}</h3>
+      <h3>{productId}</h3>
     </div>
   </motion.li>
 );
