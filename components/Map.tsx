@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { GoogleMap, useLoadScript, Marker, InfoWindow, Polyline } from '@react-google-maps/api';
 import LoadingScreen from './LoadingScreen';
+import { Black_And_White_Picture } from 'next/font/google';
 
 const containerStyle = {
   width: '100vw',
@@ -83,6 +84,90 @@ const Map: React.FC<MapProps> = ({ currentSelectedProductId }) => {
         scaleControl: false,
         rotateControl: false,
         fullscreenControl: false,
+        keyboardShortcuts: false,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        styles: [
+          {
+            "elementType": "geometry",
+            "stylers": [
+              { "color": "#424242" } // Lighter background color
+            ]
+          },
+          {
+            "elementType": "labels.icon",
+            "stylers": [
+              { "visibility": "off" } // Hide icons
+            ]
+          },
+          {
+            "elementType": "labels.text.fill",
+            "stylers": [
+              { "color": "#e0e0e0" } // Light gray label color
+            ]
+          },
+          {
+            "elementType": "labels.text.stroke",
+            "stylers": [
+              { "color": "#424242" } // Darker stroke for labels
+            ]
+          },
+          {
+            "featureType": "administrative",
+            "elementType": "geometry",
+            "stylers": [
+              { "color": "#757575" } // Medium gray for administrative areas
+            ]
+          },
+          {
+            "featureType": "administrative.country",
+            "elementType": "labels.text.fill",
+            "stylers": [
+              { "color": "#ffffff" } // White for country labels
+            ]
+          },
+          {
+            "featureType": "administrative.province",
+            "elementType": "labels.text.fill",
+            "stylers": [
+              { "color": "#ffffff" } // White for province labels
+            ]
+          },
+          {
+            "featureType": "landscape",
+            "elementType": "geometry",
+            "stylers": [
+              { "color": "#303030" } // Dark gray for landscape
+            ]
+          },
+          {
+            "featureType": "poi",
+            "elementType": "geometry",
+            "stylers": [
+              { "color": "#424242" } // Medium gray for points of interest
+            ]
+          },
+          {
+            "featureType": "road",
+            "elementType": "geometry",
+            "stylers": [
+              { "color": "#616161" } // Medium gray for roads
+            ]
+          },
+          {
+            "featureType": "water",
+            "elementType": "geometry",
+            "stylers": [
+              { "color": "#1a1a1a" } // Darker gray for water
+            ]
+          },
+          {
+            "featureType": "transit",
+            "elementType": "geometry",
+            "stylers": [
+              { "color": "#424242" } // Medium gray for transit
+            ]
+          }
+        ]
       }}
     >
       {currentProduct && currentProduct.route && currentProduct.route.map((point, index) => (
@@ -96,7 +181,7 @@ const Map: React.FC<MapProps> = ({ currentSelectedProductId }) => {
             fillOpacity: 1,
             strokeColor: 'black',
             strokeWeight: 2,
-            scale: 10,
+            scale: 8,
           }}
         />
       ))}
@@ -106,8 +191,8 @@ const Map: React.FC<MapProps> = ({ currentSelectedProductId }) => {
           onCloseClick={() => setSelectedMarker(null)}
         >
           <div>
-            <h3>{selectedMarker.name}</h3>
-            <p>Status: {selectedMarker.status ? selectedMarker.status.toString() : 'N/A'}</p>
+            <p className='text-md font-bold'>{selectedMarker.name}</p>
+            <p>Last updated: {selectedMarker.status ? selectedMarker.status.toString() : 'N/A'}</p>
           </div>
         </InfoWindow>
       )}
@@ -115,7 +200,7 @@ const Map: React.FC<MapProps> = ({ currentSelectedProductId }) => {
         <Polyline
           path={currentProduct.route.map(point => ({ lat: point.latitude, lng: point.longitude }))}
           options={{
-            strokeColor: 'blue',
+            strokeColor: 'black',
             strokeOpacity: 1,
             strokeWeight: 3,
           }}

@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import ProductPassport from '@/components/ProductPassport';
 import PassportList from './PassportList';
+import LoadingScreen from './LoadingScreen';
 
 interface PassportContainerProps {
   userId: string;
@@ -39,7 +40,7 @@ const PassportContainer: React.FC<PassportContainerProps> = ({ userId }) => {
   };
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <LoadingScreen />;
   }
 
   if (error) {

@@ -24,6 +24,7 @@ const PassportList: React.FC<PassportListProps> = ({ productIds, onPassportClick
     productId.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+
   return (
     <>
       {/* Button for Small Screens */}
