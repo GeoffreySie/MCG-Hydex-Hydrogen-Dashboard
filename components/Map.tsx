@@ -7,15 +7,20 @@ const containerStyle = {
   height: '100vh',
 };
 
+// Update the center to be more representative of England's geographical center
 const center = {
-  lat: 51.5074,
-  lng: -0.1278
+  lat: 54.3555,
+  lng: -3.9743
 };
 
+// Set a zoom level that covers all of England
+const initialZoom = 6;
+
 interface RoutePoint {
+  _id: string;
+  name: string;
   latitude: number;
   longitude: number;
-  name: string;
   status: Date | null;
 }
 
@@ -40,6 +45,8 @@ const Map: React.FC<MapProps> = ({ currentSelectedProductId }) => {
   useEffect(() => {
     const fetchProductRoute = async () => {
       if (currentSelectedProductId) {
+        setCurrentProduct(null); // Clear current product to reset map
+
         try {
           const response = await fetch(`/api/products/${currentSelectedProductId}`);
           const data: Product = await response.json();
@@ -52,6 +59,8 @@ const Map: React.FC<MapProps> = ({ currentSelectedProductId }) => {
       }
     };
 
+    setSelectedMarker(null); // Clear selected marker
+
     fetchProductRoute();
   }, [currentSelectedProductId]);
 
@@ -61,9 +70,10 @@ const Map: React.FC<MapProps> = ({ currentSelectedProductId }) => {
 
   return (
     <GoogleMap
+      key={currentSelectedProductId} // Use key to force re-render
       mapContainerStyle={containerStyle}
       center={center}
-      zoom={10}
+      zoom={initialZoom} // Use the initial zoom level
       options={{
         disableDefaultUI: false,
         zoomControl: true,
@@ -79,7 +89,6 @@ const Map: React.FC<MapProps> = ({ currentSelectedProductId }) => {
         <Marker
           key={`${currentProduct._id}-${index}`}
           position={{ lat: point.latitude, lng: point.longitude }}
-          label={point.name}
           onClick={() => setSelectedMarker(point)}
           icon={{
             path: window.google.maps.SymbolPath.CIRCLE,

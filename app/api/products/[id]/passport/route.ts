@@ -7,6 +7,7 @@ export async function GET(
   { params }: { params: { id: string } }
 ) {
   try {
+    // Log the full URL of the request
     const client = await clientPromise;
     const db = client.db("demoDB");
 

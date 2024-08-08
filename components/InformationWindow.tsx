@@ -107,7 +107,7 @@ const InformationWindow: React.FC<InformationWindowProps> = ({ currentSelectedPr
 
           {activeTab === 'tab3' && (
             <div>
-              <InfoDPP />
+              <InfoDPP currentSelectedProductId={currentSelectedProductId ?? ''}/>
             </div>
           )}
         </div>

@@ -3,16 +3,14 @@
 import React, { useState, useEffect } from 'react';
 import ProductPassport from '@/components/ProductPassport';
 import PassportList from './PassportList';
-import { ProductData } from '@/passport-types';
 
 interface PassportContainerProps {
-  currentSelectedProductId: string | null;
-  userId: string; // Add this prop to receive the user ID
+  userId: string;
 }
 
-const PassportContainer: React.FC<PassportContainerProps> = ({ currentSelectedProductId, userId }) => {
+const PassportContainer: React.FC<PassportContainerProps> = ({ userId }) => {
   const [productIds, setProductIds] = useState<string[]>([]);
-  const [selectedPassport, setSelectedPassport] = useState<ProductData | null>(null);
+  const [currentSelectedProductId, setCurrentSelectedProductId] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -25,11 +23,7 @@ const PassportContainer: React.FC<PassportContainerProps> = ({ currentSelectedPr
           throw new Error('Failed to fetch user data');
         }
         const userData = await response.json();
-        
-        // Assuming the user data contains a 'products' array with product IDs
         setProductIds(userData.products || []);
-        console.log(userData.Products);
-        console.log("end");
       } catch (err) {
         setError(err instanceof Error ? err.message : 'An error occurred');
       } finally {
@@ -41,9 +35,7 @@ const PassportContainer: React.FC<PassportContainerProps> = ({ currentSelectedPr
   }, [userId]);
 
   const handlePassportClick = (productId: string) => {
-    // You might want to fetch the full passport data here
-    // For now, we'll just set the ID
-    setSelectedPassport({ _id: productId } as ProductData);
+    setCurrentSelectedProductId(productId);
   };
 
   if (isLoading) {
