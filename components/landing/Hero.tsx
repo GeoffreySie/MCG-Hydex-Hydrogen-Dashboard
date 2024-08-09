@@ -16,25 +16,17 @@ const Hero = () => {
 
             <div className='flex flex-row mt-6'>
                 <InvertedButton text='Learn more'/>
-
                 <button className='ml-4 py-2 px-4'>
                     Get in touch
                 </button>
-
-            </div>
-
-            
+            </div>           
         </div>
 
         <Image
             src = {dashboardImage}
             alt = 'Dashboard'
             className='border-2 border-slate-950'
-
-
-        />
-
-        
+        />       
     </div>
   )
 }
