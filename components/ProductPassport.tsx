@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import LoadingScreen from '@/components/LoadingScreen';
 import { ProductData } from "@/passport-types";
+import { faRecycle, faWater, faIndustry, faLandmark, faSun, faSkullCrossbones } from '@fortawesome/free-solid-svg-icons';
+import InfoBox from '@/components/passport/ui/InfoBox';
+import BooleanBox from '@/components/passport/ui/BooleanBox';
 
 interface ProductPassportProps {
   currentSelectedProductId: string | null;
@@ -64,13 +67,14 @@ const ProductPassport: React.FC<ProductPassportProps> = ({ currentSelectedProduc
     ? "bg-cream w-full p-2 border border-neutral-400 rounded-lg"
     : "bg-cream w-full p-2 border border-neutral-400 rounded-lg";
 
-  const smallSectionClass = compact
-    ? "bg-blue-200 w-full p-2 border border-neutral-400 rounded-lg"
-    : "bg-blue-200 w-full h-32 border border-neutral-400 rounded-lg p-2";
+  // const smallSectionClass = compact
+  //   ? "bg-blue-200 w-full p-2 border border-neutral-400 rounded-lg"
+  //   : "bg-blue-200 w-full h-32 border border-neutral-400 rounded-lg p-2";
 
   const greenSectionClass = compact
     ? "bg-lime w-full p-2 border border-neutral-400 rounded-lg p-2"
     : "bg-lime w-full h-32 border border-neutral-400 rounded-lg p-2";
+
 
   return (
     <div className={containerClass}>
@@ -99,22 +103,10 @@ const ProductPassport: React.FC<ProductPassportProps> = ({ currentSelectedProduc
       </div>
 
       <div className={`grid grid-cols-2 gap-2 ${compact ? '' : 'col-span-2'}`}>
-        <div className={smallSectionClass}>
-          <h3 className='text-center text-sm font-semibold'>Renewable Energy Source</h3>
-          <p>{data.renewableEnergySource}</p>
-        </div>
-        <div className={smallSectionClass}>
-          <h3 className='text-center text-sm font-semibold'>Geographical Correlation</h3>
-          <p>{data.geographicalCorrelation ? 'Yes' : 'No'}</p>
-        </div>
-        <div className={smallSectionClass}>
-          <h3 className='text-center text-sm font-semibold'>Renewables Additionality</h3>
-          <p>{data.renewablesAdditionality ? 'Yes' : 'No'}</p>
-        </div>
-        <div className={smallSectionClass}>
-          <h3 className='text-center text-sm font-semibold'>Temporal Correlation</h3>
-          <p>{data.temporalCorrelation ? 'Yes' : 'No'}</p>
-        </div>
+        <InfoBox title="Renewable Energy Source" value={data.renewableEnergySource} color="#92DBFF" />
+        <BooleanBox title="Geographical Correlation" value={data.geographicalCorrelation} color="#92DBFF" />
+        <BooleanBox title="Renewables Additionality" value={data.renewablesAdditionality} color="#92DBFF" />
+        <BooleanBox title="Temporal Correlation" value={data.temporalCorrelation} color="#92DBFF" />
       </div>
 
       <div className={`${sectionClass} ${compact ? '' : 'flex col-span-2'}`}>
@@ -129,28 +121,22 @@ const ProductPassport: React.FC<ProductPassportProps> = ({ currentSelectedProduc
       </div>
 
       <div className={greenSectionClass}>
-        <h3 className="font-semibold">Waste Management</h3>
-        <p>{data.wasteManagement}</p>
+        <InfoBox title="Waste Management" value={data.wasteManagement} icon={faRecycle} color="#CFFF93" />
       </div>
       <div className={greenSectionClass}>
-        <h3 className="font-semibold">Water Consumption</h3>
-        <p>{data.waterConsumption}</p>
+        <InfoBox title="Water Consumption" value={data.waterConsumption} icon={faWater} color="#CFFF93" />
       </div>
       <div className={greenSectionClass}>
-        <h3 className="font-semibold">Resource Depletion</h3>
-        <p>{data.resourceDepletion}</p>
+        <InfoBox title="Resource Depletion" value={data.resourceDepletion} icon={faIndustry} color="#CFFF93" />
       </div>
       <div className={greenSectionClass}>
-        <h3 className="font-semibold">Land Use</h3>
-        <p>{data.landUse}</p>
+        <InfoBox title="Land Use" value={data.landUse} icon={faLandmark} color="#CFFF93" />
       </div>
       <div className={greenSectionClass}>
-        <h3 className="font-semibold">Ozone Depletion</h3>
-        <p>{data.ozoneDepletion}</p>
+        <InfoBox title="Ozone Depletion" value={data.ozoneDepletion} icon={faSun} color="#CFFF93" />
       </div>
       <div className={greenSectionClass}>
-        <h3 className="font-semibold">Eco Toxicity</h3>
-        <p>{data.ecoToxicity}</p>
+        <InfoBox title="Eco Toxicity" value={data.ecoToxicity} icon={faSkullCrossbones} color="#CFFF93" />
       </div>
     </div>
   );

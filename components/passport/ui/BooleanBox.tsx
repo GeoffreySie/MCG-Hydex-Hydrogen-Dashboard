@@ -7,13 +7,14 @@ import InfoBox from './InfoBox';
 interface BooleanBoxProps {
   title: string;
   value: boolean;
+  color?: string;
 }
 
-const BooleanBox: React.FC<BooleanBoxProps> = ({ title, value }) => {
+const BooleanBox: React.FC<BooleanBoxProps> = ({ title, value , color}) => {
   const yesIcon = <FontAwesomeIcon icon={faCheckCircle} className="text-green-500 text-2xl " />;
   const noIcon = <FontAwesomeIcon icon={faTimesCircle} className="text-red-500 text-2xl" />;
   return (
-    <InfoBox title={title} value={value ? yesIcon : noIcon} />
+    <InfoBox title={title} value={value ? yesIcon : noIcon} {...(color && { color })}/>
   );
 };
 

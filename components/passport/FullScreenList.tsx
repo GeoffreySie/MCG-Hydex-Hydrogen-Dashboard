@@ -49,7 +49,7 @@ const FullScreenList: React.FC<FullScreenListProps> = ({
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
-          Saved Passports
+          Saved Products
         </motion.h1>
         <SearchBar value={searchTerm} onChange={handleSearchChange} />
         <ul className="w-full mt-4">

@@ -30,7 +30,7 @@ const CollapsibleList: React.FC<CollapsibleListProps> = ({
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
-          Saved Passports
+          Saved Products
         </motion.h1>
       )}
       {!isCollapsed && (
