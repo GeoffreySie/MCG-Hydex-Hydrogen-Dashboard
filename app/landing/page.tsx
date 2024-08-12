@@ -8,47 +8,76 @@ import News from '@/components/landing/News'
 import GetInTouch from '@/components/landing/GetInTouch'
 import { Separator } from "@/components/landing/ui/separator"
 import Contact from '@/components/landing/Contact'
+import Companies from '@/components/landing/Companies'
+import Image from 'next/image'
+import logo from '@/public/images/logo.png'
 
 
 const page = () => {
     const navItems = [
         {
           name: "Home",
-          link: "/",
+          link: "#Home",
         },
         {
           name: "Projects",
           link: "#Projects",
         },
         {
+          name: "Team",
+          link: "#Team",
+        },
+        {
           name: "News",
           link: "#News",
         },
         {
-            name: "Contact Us",
-            link: "#contact",
+          name: "Contacts",
+          link: "#Contact",
         },
     ];
     return (
-        <main className="relative bg-white flex justify-center items-center flex-col overflow-hidden mx-auto sm:px-10 px-5">
+        <main className="scroll-smooth relative bg-white flex justify-center items-center flex-col overflow-hidden mx-auto sm:px-10 px-5 py-4 mb-12">
             <div className="max-w-7xl w-full">
+
+                <div className="w-32 h-16 relative ml-12 mt-8">
+                    <Image
+                    src={logo}
+                    alt="MCG Logo"
+                    layout="fill"
+                    objectFit="contain"
+                    />
+                </div>
 
                 <FloatingNav navItems={navItems}/>
 
-                <Hero/>
+                <div id='Home'>
+                    <Hero/>
+                </div>
 
                 <StatisticsPanel/>
-
+                
+                <div id='Projects'>
                 <Projects/>
+                </div>
                 <Separator/>
-
+                
+                <div id='Team'>
                 <Team/>
+                </div>
                 <Separator/>
 
-                <News/>
+                <div id='News'>
+                <News/>      
+                </div>  
                 <Separator/>
 
+                <div id='Contact'>
                 <GetInTouch/>
+                </div>
+                <Separator/>
+
+                <Companies/>
                 <Separator/>
 
                 <Contact/>

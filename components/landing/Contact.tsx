@@ -5,7 +5,7 @@ import InvertedButton from './ui/inverted-button'
 
 const Contact = () => {
   return (
-    <div className='grid grid-cols-3'>
+    <div className='grid grid-cols-3 p-8'>
         <div className='flex justify-center items-center'>
             <div className="w-24 h-12 relative">
                 <Image
@@ -17,24 +17,24 @@ const Contact = () => {
             </div>
         </div>
         
-        <div>
+        <div className='flex flex-col justify-center text-center'>
             <h1 className='text-xl text-center text-green-800 font-bold mb-4'>Contact Us</h1>
             <a
                 href='https://www.linkedin.com/company/mcg-uk/mycompany/'
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-green-800 text-center"
+                className="text-green-800"
                 >
                 LinkedIn: MCG UK
             </a>
-            <p className='text-green-800 text-center'>Phone: </p>
-            <p className='text-green-800 text-center'>Email: </p>
+            <p className='text-green-800 text-center'>Phone: +44 7586 852406</p>
+            <p className='text-green-800 text-center'>Email: cliu@vuila.ca</p>
             
         </div>
 
         <div className='flex justify-center items-center'>
             <div>
-                <InvertedButton text='Get in Touch'/>
+                <a href="https://brandfetch.com/developers/logo-api">Logos by Brandfetch</a>
             </div>
         </div>
     </div>

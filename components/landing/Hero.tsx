@@ -16,9 +16,13 @@ const Hero = () => {
 
             <div className='flex flex-row mt-6'>
                 <InvertedButton text='Learn more'/>
-                <button className='ml-4 py-2 px-4'>
-                    Get in touch
+                <button className='ml-4 py-2 px-4 relative group'>
+                    <span className="inline-block transition-transform duration-100 group-hover:translate-x-1 text-gray-700 group-hover:text-black">
+                        Get in touch
+                        <span className="ml-2">&gt;</span>
+                    </span>
                 </button>
+
             </div>           
         </div>
 
