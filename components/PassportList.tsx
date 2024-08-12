@@ -1,17 +1,17 @@
 "use client";
 
 import React, { useState } from 'react';
-import { ProductData } from '@/passport-types';
 import CollapsibleSidebar from '@/components/passport/CollapsibleList';
 import FullScreenList from '@/components/passport/FullScreenList';
 import OutlineButton from './ui/OutlineButton';
 
 interface PassportListProps {
-  data: ProductData[];
-  onPassportClick: (passport: ProductData) => void;
+  productIds: string[];
+  onPassportClick: (productId: string) => void;
 }
 
-const PassportList: React.FC<PassportListProps> = ({ data, onPassportClick }) => {
+const PassportList: React.FC<PassportListProps> = ({ productIds, onPassportClick }) => {
+  console.log('PassportList received productIds:', productIds);
   const [searchTerm, setSearchTerm] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -20,9 +20,10 @@ const PassportList: React.FC<PassportListProps> = ({ data, onPassportClick }) =>
     setSearchTerm(e.target.value);
   };
 
-  const filteredData = data.filter((productPassport) =>
-    productPassport.consignmentId.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredProductIds = productIds.filter((productId) =>
+    productId.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
 
   return (
     <>
@@ -37,7 +38,7 @@ const PassportList: React.FC<PassportListProps> = ({ data, onPassportClick }) =>
         toggleCollapse={() => setIsCollapsed(!isCollapsed)}
         searchTerm={searchTerm}
         handleSearchChange={handleSearchChange}
-        filteredData={filteredData}
+        filteredData={filteredProductIds}
         onPassportClick={onPassportClick}
       />
       
@@ -47,7 +48,7 @@ const PassportList: React.FC<PassportListProps> = ({ data, onPassportClick }) =>
         setIsOpen={setIsOpen}
         searchTerm={searchTerm}
         handleSearchChange={handleSearchChange}
-        filteredData={filteredData}
+        filteredData={filteredProductIds}
         onPassportClick={onPassportClick}
       />
     </>

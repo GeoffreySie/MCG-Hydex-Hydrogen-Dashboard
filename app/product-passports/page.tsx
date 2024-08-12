@@ -17,8 +17,7 @@ export default function Home() {
       >
         <SidebarMenu/>
 
-        <PassportContainer/>
-        
+        <PassportContainer userId="64c9b5f4f2c4b7a0b8b45678"/>
       </div>
     </main>
   );

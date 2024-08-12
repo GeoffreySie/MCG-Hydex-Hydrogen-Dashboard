@@ -1,5 +1,5 @@
 export interface ProductData {
-  id: string;
+  _id: string;
   consignmentId: string;
   production: number;
   compressionAndStorage: number;
@@ -17,4 +17,6 @@ export interface ProductData {
   landUse: string;
   ozoneDepletion: string;
   ecoToxicity: string;
+  createdAt: string;
+  updatedAt: string;
 }

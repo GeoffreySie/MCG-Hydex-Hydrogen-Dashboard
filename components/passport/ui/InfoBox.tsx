@@ -9,7 +9,8 @@ interface InfoBoxProps {
 }
 
 const InfoBox: React.FC<InfoBoxProps> = ({ title, value, color, icon }) => (
-  <div className="w-full max-w-56 h-28 p-2 border border-neutral-400 rounded-lg flex flex-col justify-center relative" style={{ backgroundColor: color || 'cream' }}>
+  <div className="w-full border-neutral-400 rounded-lg flex flex-col justify-center relative" style={{ backgroundColor: color || 'cream' }}>
+
     {icon && <FontAwesomeIcon icon={icon} className="top-4 text-xl mb-2" />}
     <div className="flex flex-col items-center">
       <h2 className="text-center sm:text-sm md:text-base font-semibold mb-2">{title}</h2>

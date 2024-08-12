@@ -7,7 +7,7 @@ import ProfileContainer from '@/components/ProfileContainer';
 
 const ProfilePage: React.FC = () => {
   // For now, we'll use a placeholder user ID
-  const placeholderUserId = "64c9b5f4f2c4b7a0b8b45681";
+  const placeholderUserId = "64c9b5f4f2c4b7a0b8b45678";
 
   return (
     <main className="min-h-screen bg-neutral-50 dark:bg-neutral-900">
