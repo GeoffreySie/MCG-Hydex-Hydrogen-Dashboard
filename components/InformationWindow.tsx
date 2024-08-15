@@ -89,8 +89,8 @@ const InformationWindow: React.FC<InformationWindowProps> = ({ currentSelectedPr
         </button>
       </div>
 
-      <div className="h-full overflow-hidden rounded-b-2xl">
-        <div className="h-full overflow-y-auto bg-white text-black rounded-b-2xl">
+      <div className="h-full flex-1 overflow-y-auto rounded-b-2xl">
+        <div className="h-full flex-1 overflow-y-auto bg-white text-black rounded-b-2xl">
           {activeTab === 'tab1' && (
             <div className='p-4'>
               {currentProduct?.route && currentProduct.route.map((location) => (

@@ -1,65 +1,91 @@
-// app/dashboard/page.tsx
-"use client";
-import React, { useState, useEffect } from 'react';
-import InfoWindow from '@/components/InformationWindow';
-import Map from '@/components/Map';
-import SidebarMenu from '@/components/SidebarMenu';
-import PassportList from '@/components/PassportList';
-
-const DashboardPage = () => {
-  const [currentSelectedProductId, setCurrentSelectedProductId] = useState<string | null>(null);
-  const [userId, setUserId] = useState<string>("64c9b5f4f2c4b7a0b8b45678");
-  const [productIds, setProductIds] = useState<string[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-
-  useEffect(() => {
-    const fetchProductIds = async () => {
-      try {
-        setIsLoading(true);
-        const response = await fetch(`/api/users/${userId}`);
-        if (!response.ok) {
-          throw new Error('Failed to fetch user data');
-        }
-        const userData = await response.json();
-        setProductIds(userData.products || []);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'An error occurred');
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchProductIds();
-  }, [userId]);
+import React from 'react'
+import { FloatingNav } from '@/components/landing/ui/floating-navbar'
+import Hero from '@/components/landing/Hero'
+import StatisticsPanel from '@/components/landing/StatisticsPanel'
+import Projects from '@/components/landing/Projects'
+import Team from '@/components/landing/Team'
+import News from '@/components/landing/News'
+import GetInTouch from '@/components/landing/GetInTouch'
+import { Separator } from "@/components/landing/ui/separator"
+import Contact from '@/components/landing/Contact'
+import Companies from '@/components/landing/Companies'
+import Image from 'next/image'
+import logo from '@/public/images/logo.png'
 
 
-  const handlePassportClick = (productId: string) => {
-    setCurrentSelectedProductId(productId);
-  };
 
-  return (
-    <main>
-      <div className='flex'>
-        <div className='z-30 h-screen'>
-          <SidebarMenu />
-        </div>
+const page = () => {
+    const navItems = [
+        {
+          name: "Home",
+          link: "#Home",
+        },
+        {
+          name: "Projects",
+          link: "#Projects",
+        },
+        {
+          name: "Team",
+          link: "#Team",
+        },
+        {
+          name: "News",
+          link: "#News",
+        },
+        {
+          name: "Contacts",
+          link: "#Contact",
+        },
+    ];
+    return (
+        <main className="scroll-smooth relative bg-white flex justify-center items-center flex-col overflow-hidden mx-auto sm:px-10 px-5 py-4 mb-12">
+            <div className="max-w-7xl w-full">
 
-        <div className='z-20'>
-          <PassportList onPassportClick={handlePassportClick} productIds={productIds}/>
-        </div>
+                <div className="w-32 h-16 relative ml-12 mt-8">
+                    <Image
+                    src={logo}
+                    alt="MCG Logo"
+                    layout="fill"
+                    objectFit="contain"
+                    />
+                </div>
 
-        <div className='z-10'>
-          <InfoWindow currentSelectedProductId={currentSelectedProductId} />
-        </div>
+                <FloatingNav navItems={navItems}/>
 
-        <div className='absolute w-screen h-screen z-0'>
-          <Map currentSelectedProductId={currentSelectedProductId} />
-        </div>
-      </div>
-    </main>
-  );
-};
+                <div id='Home'>
+                    <Hero/>
+                </div>
 
-export default DashboardPage;
+                <StatisticsPanel/>
+                
+                <div id='Projects'>
+                <Projects/>
+                </div>
+                <Separator/>
+                
+                <div id='Team'>
+                <Team/>
+                </div>
+                <Separator/>
+
+                <div id='News'>
+                <News/>      
+                </div>  
+                <Separator/>
+
+                <div id='Contact'>
+                <GetInTouch/>
+                </div>
+                <Separator/>
+
+                <Companies/>
+                <Separator/>
+
+                <Contact/>
+
+            </div>
+        </main>
+    )
+}
+
+export default page

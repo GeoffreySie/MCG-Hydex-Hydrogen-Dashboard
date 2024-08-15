@@ -3,9 +3,11 @@ import SidebarMenu from "@/components/SidebarMenu";
 import { cn } from "@/lib/utils";
 import DppDashboard from "@/components/ProductPassport";
 import AddRouteContainer from "@/components/AddRouteContainer";
+import ProtectedRoute from '@/components/ProtectedRoute'
 
 export default function Home() {
   return (
+  <ProtectedRoute>
     <main className="">
       <div
       className={cn(
@@ -17,5 +19,6 @@ export default function Home() {
         <AddRouteContainer />
       </div>
     </main>
+  </ProtectedRoute>
   );
 }

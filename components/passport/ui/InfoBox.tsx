@@ -20,3 +20,5 @@ const InfoBox: React.FC<InfoBoxProps> = ({ title, value, color, icon }) => (
 );
 
 export default InfoBox;
+
+

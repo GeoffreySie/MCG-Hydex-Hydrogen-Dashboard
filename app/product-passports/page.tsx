@@ -5,9 +5,11 @@ import ProductPassport from "@/components/ProductPassport";
 import React from "react";
 import PassportList from "@/components/PassportList";
 import PassportContainer from "@/components/PassportContainer";
+import ProtectedRoute from "@/components/ProtectedRoute";
 
 export default function Home() {
   return (
+  <ProtectedRoute>
     <main className="">
       <div
       className={cn(
@@ -20,5 +22,6 @@ export default function Home() {
         <PassportContainer userId="64c9b5f4f2c4b7a0b8b45678"/>
       </div>
     </main>
+  </ProtectedRoute>
   );
 }

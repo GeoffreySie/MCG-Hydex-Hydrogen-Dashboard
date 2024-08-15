@@ -11,7 +11,6 @@ interface PassportListProps {
 }
 
 const PassportList: React.FC<PassportListProps> = ({ productIds, onPassportClick }) => {
-  console.log('PassportList received productIds:', productIds);
   const [searchTerm, setSearchTerm] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);

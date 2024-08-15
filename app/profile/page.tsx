@@ -4,12 +4,14 @@
 import React from 'react';
 import SidebarMenu from '@/components/SidebarMenu';
 import ProfileContainer from '@/components/ProfileContainer';
+import ProtectedRoute from '@/components/ProtectedRoute';
 
 const ProfilePage: React.FC = () => {
   // For now, we'll use a placeholder user ID
   const placeholderUserId = "64c9b5f4f2c4b7a0b8b45678";
 
   return (
+    <ProtectedRoute>
     <main className="min-h-screen bg-neutral-50 dark:bg-neutral-900">
       <div className="rounded-md flex flex-col md:flex-row bg-neutral-100 dark:bg-neutral-800 w-full flex-1 mx-auto border border-neutral-200 dark:border-neutral-700 overflow-hidden h-screen">
         <SidebarMenu />
@@ -18,6 +20,7 @@ const ProfilePage: React.FC = () => {
         </div>
       </div>
     </main>
+    </ProtectedRoute>
   );
 };
 

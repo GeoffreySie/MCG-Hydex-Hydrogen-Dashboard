@@ -119,18 +119,18 @@ const IoTData: React.FC<IoTDataProps> = ({ currentSelectedProductId }) => {
   ];
 
   return (
-    <div className="w-full h-full flex flex-col items-center space-y-4">
-      {charts.map((chart, index) => (
-        <div key={index} className="bg-white w-full max-w-4xl">
-          <div className="w-full h-80">
-            <Line 
-              options={options(chart.title)}
-              data={createChartData(chart.title, chart.data, chart.color)} 
-            />
-          </div>
-        </div>
-      ))}
+    <div className="w-full h-full flex flex-col items-center overflow-y-auto">
+  {charts.map((chart, index) => (
+    <div key={index} className="bg-white w-full h-full max-w-4xl">
+      <div className="w-full h-80">
+        <Line 
+          options={options(chart.title)}
+          data={createChartData(chart.title, chart.data, chart.color)} 
+        />
+      </div>
     </div>
+  ))}
+</div>
   );
 };
 

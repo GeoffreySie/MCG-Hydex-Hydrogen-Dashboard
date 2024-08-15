@@ -11,7 +11,6 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
     console.log('Connected to database');
 
     const user = await db.collection('users').findOne({ _id: new ObjectId(params.id) });
-    console.log('User data:', user);
 
     if (!user) {
       return NextResponse.json({ message: 'User not found' }, { status: 404 });
