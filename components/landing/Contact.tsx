@@ -18,16 +18,15 @@ const Contact = () => {
         </div>
         
         <div className='flex flex-col justify-center text-center'>
-            <h1 className='text-xl text-center text-green-800 font-bold mb-4'>Contact Us</h1>
+            <h1 className='text-2xl text-center text-green-800 font-bold mb-4'>Contact Us</h1>
             <a
                 href='https://www.linkedin.com/company/mcg-uk/mycompany/'
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-green-800"
                 >
-                LinkedIn: MCG UK
+                LinkedIn: <span className='hover:text-green-950'>MCG UK</span>
             </a>
-            <p className='text-green-800 text-center'>Phone: +44 7586 852406</p>
             <p className='text-green-800 text-center'>Email: cliu@vuila.ca</p>
             
         </div>
