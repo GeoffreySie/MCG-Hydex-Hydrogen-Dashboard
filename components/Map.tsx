@@ -74,7 +74,7 @@ const Map: React.FC<MapProps> = ({ currentSelectedProductId }) => {
     <GoogleMap
       key={currentSelectedProductId} // Force re-render by using key
       mapContainerStyle={containerStyle}
-      onLoad={map => (mapRef.current = map)}
+      // onLoad={map => (mapRef.current = map)}
       options={{
         disableDefaultUI: false,
         zoomControl: true,
