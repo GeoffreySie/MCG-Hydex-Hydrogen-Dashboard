@@ -27,8 +27,7 @@ const Contact = () => {
                 >
                 LinkedIn: MCG UK
             </a>
-            <p className='text-green-800 text-center'>Phone: +44 7586 852406</p>
-            <p className='text-green-800 text-center'>Email: cliu@vuila.ca</p>
+            <p className='text-green-800 text-center'>Email: info@modularclintonglobal.com</p>
             
         </div>
 

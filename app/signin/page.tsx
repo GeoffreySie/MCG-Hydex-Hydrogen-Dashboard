@@ -1,10 +1,9 @@
 "use client";
-
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { CognitoUser, AuthenticationDetails } from 'amazon-cognito-identity-js';
 import userPool from '../../lib/UserPool';
-import { useAuth } from '../context/AuthContext'; // Import useAuth
+import { useAuth } from '../context/AuthContext';
 
 const SignInPage: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -12,9 +11,9 @@ const SignInPage: React.FC = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
-  const [isSignUp, setIsSignUp] = useState(false); // State to toggle between sign-in and sign-up
+  const [isSignUp, setIsSignUp] = useState(false);
   const router = useRouter();
-  const { setIsAuthenticated } = useAuth(); // Destructure setIsAuthenticated from useAuth
+  const { setIsAuthenticated } = useAuth();
 
   const handleSignIn = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -64,10 +63,11 @@ const SignInPage: React.FC = () => {
         return;
       }
       console.log('Sign up successful!', result);
-      setIsSignUp(false); // Switch back to sign-in form
+      setIsSignUp(false);
       setLoading(false);
     });
   };
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
       <h1 className="text-2xl font-bold mb-4">{isSignUp ? 'Sign Up' : 'Sign In'}</h1>
@@ -133,4 +133,5 @@ const SignInPage: React.FC = () => {
     </div>
   );
 };
-  export default SignInPage;
+
+export default SignInPage;

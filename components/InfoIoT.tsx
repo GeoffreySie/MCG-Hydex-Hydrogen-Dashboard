@@ -32,13 +32,11 @@ const IoTData: React.FC<IoTDataProps> = ({ currentSelectedProductId }) => {
         setIsLoading(true);
         setError(null);
         try {
-          console.log('Fetching IoT data for product:', currentSelectedProductId);
           const response = await fetch(`/api/products/${currentSelectedProductId}/iot-data`);
           if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
           }
           const result = await response.json();
-          console.log('Fetched IoT data:', result);
           setData(result);
         } catch (error) {
           console.error('Failed to fetch IoT data:', error);
@@ -48,7 +46,6 @@ const IoTData: React.FC<IoTDataProps> = ({ currentSelectedProductId }) => {
           setIsLoading(false);
         }
       } else {
-        console.log('No product ID provided');
         setData(null);
         setError('No product selected');
         setIsLoading(false);

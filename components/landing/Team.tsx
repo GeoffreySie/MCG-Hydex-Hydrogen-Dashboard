@@ -14,8 +14,8 @@ const Team = () => {
           name="Clinton Liu" 
           icon={<MassiveQuestionMark />}
           linkedin='https://www.linkedin.com/in/clinton-liu'
-          phone='+44 7586 852406'
-          email='cliu@vuila.ca'
+          // phone='+44 7586 852406'
+          email='cliu@modularclintonglobal.ca'
           imageSrc={clinton}
         >
           <CanvasRevealEffect
@@ -23,7 +23,7 @@ const Team = () => {
             containerClassName="bg-emerald-900"
           />
         </Card>
-        <Card name="Person 2" icon={<MassiveQuestionMark />}>
+        <Card name="Jake Queue" icon={<MassiveQuestionMark />} linkedin='https://www.linkedin.com/in/jake-queue-262ba426/' email='jqueue@modularclintonglobal.com'>
           <CanvasRevealEffect
             animationSpeed={3}
             containerClassName="bg-black"
