@@ -10,6 +10,9 @@ import { MdLocationOn } from 'react-icons/md';
 import { FaPassport, FaPlus } from "react-icons/fa";
 import { CognitoUser } from 'amazon-cognito-identity-js';
 import userPool from '../lib/UserPool'; 
+import Image from 'next/image'
+import logo from '@/public/images/logoIcon.png'
+
 
 const SidebarMenu = () => {
   const router = useRouter(); // Initialize useRouter
@@ -86,7 +89,13 @@ export const Logo = () => {
       href="#"
       className="font-normal flex space-x-2 items-center text-sm text-black py-1 relative z-20"
     >
-      <div className="h-5 w-6 bg-black dark:bg-white rounded-br-lg rounded-tr-sm rounded-tl-lg rounded-bl-sm flex-shrink-0" />
+      <Image
+        src={logo}
+        alt="Logo Icon"
+        width={24} // Adjust width as needed
+        height={20} // Adjust height as needed
+        className="flex-shrink-0"
+      />
       <motion.span
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -104,7 +113,13 @@ export const LogoIcon = () => {
       href="#"
       className="font-normal flex space-x-2 items-center text-sm text-black py-1 relative z-20"
     >
-      <div className="h-5 w-6 bg-black dark:bg-white rounded-br-lg rounded-tl-lg rounded-bl-sm flex-shrink-0" />
+      <Image
+        src={logo}
+        alt="Logo Icon"
+        width={24} // Adjust width as needed
+        height={20} // Adjust height as needed
+        className="flex-shrink-0"
+      />
     </Link>
   );
 };

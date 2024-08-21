@@ -60,7 +60,7 @@ const IoTData: React.FC<IoTDataProps> = ({ currentSelectedProductId }) => {
   }
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return <div className="text-center text-gray-500 mt-3">{error}</div>;
   }
 
   if (!data) {
