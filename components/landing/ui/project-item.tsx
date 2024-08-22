@@ -13,23 +13,25 @@ interface ProjectItemProps {
 
 const ProjectItem: React.FC<ProjectItemProps> = ({ title, description, imageSrc, imageAlt, imageClassNames = '',imagePosition = 'right'}) => {
   return (
-    <div className='px-12 py-4 grid grid-cols-2 mt-12 gap-12'>
+    <div className=' lg:px-12 py-4 grid grid-cols-1 md:grid-cols-2 mt-12 gap-12 justify-items-center'>
 
       {imagePosition === 'left' && (
-        <Image
-        src={imageSrc}
-        alt={imageAlt}
-        width={imageSrc.width}  
-        height={imageSrc.height} 
-        className={` ${imageClassNames}`}
-        />
+        <div className='flex flex-col justify-center items-center max-w-[32rem]'>
+          <Image
+          src={imageSrc}
+          alt={imageAlt}
+          width={imageSrc.width}  
+          height={imageSrc.height} 
+          className={` ${imageClassNames}`}
+          />
+        </div>
       )}
 
       <div className='py-8'>
-        <h1 className='text-3xl font-bold text-green-800'>
+        <h1 className='text-2xl lg:text-3xl font-bold text-green-800'>
           {title}
         </h1>
-        <p className='text-lg text-gray-600 mt-6'>
+        <p className='md:text-lg text-gray-600 mt-6'>
           {description}
         </p>
 
@@ -39,13 +41,15 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ title, description, imageSrc,
       </div>
 
       {imagePosition === 'right' && (
-        <Image
-        src={imageSrc}
-        alt={imageAlt}
-        width={imageSrc.width}  
-        height={imageSrc.height} 
-        className={`${imageClassNames}`}
-        />
+        <div className='flex flex-col justify-center items-center max-w-[32rem]'>
+          <Image
+          src={imageSrc}
+          alt={imageAlt}
+          width={imageSrc.width}  
+          height={imageSrc.height} 
+          className={`${imageClassNames}`}
+          />
+        </div>
       )}
       
     </div>
