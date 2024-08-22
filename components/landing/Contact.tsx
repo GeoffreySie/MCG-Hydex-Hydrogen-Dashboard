@@ -27,7 +27,7 @@ const Contact = () => {
                 >
                 LinkedIn: <span className='hover:text-green-950'>MCG UK</span>
             </a>
-            <p className='text-green-800 text-center'>Email: cliu@vuila.ca</p>
+            <p className='text-green-800 text-center'>Email: info@modularclintonglobal.com</p>
             
         </div>
 

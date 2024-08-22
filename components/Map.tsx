@@ -1,21 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { GoogleMap, useLoadScript, Marker, InfoWindow, Polyline } from '@react-google-maps/api';
 import LoadingScreen from './LoadingScreen';
-import { Black_And_White_Picture } from 'next/font/google';
 
 const containerStyle = {
   width: '100vw',
   height: '100vh',
 };
-
-// Update the center to be more representative of England's geographical center
-const center = {
-  lat: 54.3555,
-  lng: -3.9743
-};
-
-// Set a zoom level that covers all of England
-const initialZoom = 6;
 
 interface RoutePoint {
   _id: string;
@@ -42,11 +32,12 @@ const Map: React.FC<MapProps> = ({ currentSelectedProductId }) => {
 
   const [currentProduct, setCurrentProduct] = useState<Product | null>(null);
   const [selectedMarker, setSelectedMarker] = useState<RoutePoint | null>(null);
+  const mapRef = useRef<google.maps.Map | null>(null);
 
   useEffect(() => {
     const fetchProductRoute = async () => {
       if (currentSelectedProductId) {
-        setCurrentProduct(null); // Clear current product to reset map
+        setCurrentProduct(null);
 
         try {
           const response = await fetch(`/api/products/${currentSelectedProductId}`);
@@ -60,10 +51,20 @@ const Map: React.FC<MapProps> = ({ currentSelectedProductId }) => {
       }
     };
 
-    setSelectedMarker(null); // Clear selected marker
+    setSelectedMarker(null);
 
     fetchProductRoute();
   }, [currentSelectedProductId]);
+
+  useEffect(() => {
+    if (mapRef.current && currentProduct && currentProduct.route.length > 0) {
+      const bounds = new window.google.maps.LatLngBounds();
+      currentProduct.route.forEach(point => {
+        bounds.extend(new window.google.maps.LatLng(point.latitude, point.longitude));
+      });
+      mapRef.current.fitBounds(bounds);
+    }
+  }, [currentProduct]);
 
   if (!isLoaded) {
     return <LoadingScreen />;
@@ -71,10 +72,11 @@ const Map: React.FC<MapProps> = ({ currentSelectedProductId }) => {
 
   return (
     <GoogleMap
-      key={currentSelectedProductId} // Use key to force re-render
+      key={currentSelectedProductId} // Force re-render by using key
       mapContainerStyle={containerStyle}
-      center={center}
-      zoom={initialZoom} // Use the initial zoom level
+      onLoad={map => {
+        mapRef.current = map; // Assign the map instance to the ref
+      }}
       options={{
         disableDefaultUI: false,
         zoomControl: true,
@@ -88,7 +90,7 @@ const Map: React.FC<MapProps> = ({ currentSelectedProductId }) => {
         mapTypeId: google.maps.MapTypeId.ROADMAP,
       }}
     >
-      {currentProduct && currentProduct.route && currentProduct.route.map((point, index) => (
+      {currentProduct && currentProduct.route.map((point, index) => (
         <Marker
           key={`${currentProduct._id}-${index}`}
           position={{ lat: point.latitude, lng: point.longitude }}

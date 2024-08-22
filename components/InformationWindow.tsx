@@ -93,9 +93,13 @@ const InformationWindow: React.FC<InformationWindowProps> = ({ currentSelectedPr
         <div className="h-full flex-1 overflow-y-auto bg-white text-black rounded-b-2xl">
           {activeTab === 'tab1' && (
             <div className='p-4'>
-              {currentProduct?.route && currentProduct.route.map((location) => (
-                <RouteLocElement key={location._id} location={location} />
-              ))}
+              {currentProduct && currentProduct.route.length > 0 ? (
+                currentProduct.route.map((location) => (
+                  <RouteLocElement key={location._id} location={location} />
+                ))
+              ) : (
+                <div className="text-center text-gray-500">No product selected</div>
+              )}
             </div>
           )}
 

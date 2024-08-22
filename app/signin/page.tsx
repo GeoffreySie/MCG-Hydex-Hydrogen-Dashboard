@@ -1,10 +1,11 @@
 "use client";
-
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { CognitoUser, AuthenticationDetails } from 'amazon-cognito-identity-js';
 import userPool from '../../lib/UserPool';
-import { useAuth } from '../context/AuthContext'; // Import useAuth
+import { useAuth } from '../context/AuthContext';
+import Image from 'next/image'
+import logo from '@/public/images/logo.png'
 
 const SignInPage: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -12,9 +13,9 @@ const SignInPage: React.FC = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
-  const [isSignUp, setIsSignUp] = useState(false); // State to toggle between sign-in and sign-up
+  const [isSignUp, setIsSignUp] = useState(false);
   const router = useRouter();
-  const { setIsAuthenticated } = useAuth(); // Destructure setIsAuthenticated from useAuth
+  const { setIsAuthenticated } = useAuth();
 
   const handleSignIn = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -64,14 +65,24 @@ const SignInPage: React.FC = () => {
         return;
       }
       console.log('Sign up successful!', result);
-      setIsSignUp(false); // Switch back to sign-in form
+      setIsSignUp(false);
       setLoading(false);
     });
   };
+
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+
+    <div className="flex flex-col items-center justify-center min-h-screen bg-white">
+      <div className="w-32 h-16 absolute left-12 top-8">
+          <Image
+          src={logo}
+          alt="MCG Logo"
+          layout="fill"
+          objectFit="contain"
+          />
+      </div>
       <h1 className="text-2xl font-bold mb-4">{isSignUp ? 'Sign Up' : 'Sign In'}</h1>
-      <form onSubmit={isSignUp ? handleSignUp : handleSignIn} className="bg-white w-1/3 p-6 rounded shadow-md">
+      <form onSubmit={isSignUp ? handleSignUp : handleSignIn} className="bg-amber-100 w-11/12 h-1/3 p-6 rounded shadow-md sm:w-3/6 md:w-1/3">
         <div className="mb-4">
           <label className="block text-gray-700" htmlFor="email">
             Email
@@ -133,4 +144,5 @@ const SignInPage: React.FC = () => {
     </div>
   );
 };
-  export default SignInPage;
+
+export default SignInPage;

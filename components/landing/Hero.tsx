@@ -16,7 +16,7 @@ const Hero = () => {
 
             <div className='flex flex-row mt-6'>
                 <a href="/signin">
-                    <InvertedButton text='Learn more' />
+                    <InvertedButton text='Test demo' />
                 </a>
                 <a href="#Contact">
                     <button className='ml-4 py-2 px-4 relative group'>

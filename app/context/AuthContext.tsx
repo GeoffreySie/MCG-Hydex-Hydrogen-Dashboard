@@ -1,5 +1,3 @@
-// context/AuthContext.tsx
-
 "use client";
 
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
@@ -8,6 +6,7 @@ import userPool from '../../lib/UserPool';
 
 interface AuthContextType {
   isAuthenticated: boolean;
+  isLoading: boolean;
   setIsAuthenticated: (value: boolean) => void;
   signOut: () => void;
 }
@@ -16,19 +15,27 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const user = userPool.getCurrentUser();
-    if (user) {
-      user.getSession((err: any, session: any) => {
-        if (err) {
-          console.error('Error getting session:', err);
-          setIsAuthenticated(false);
-        } else {
-          setIsAuthenticated(session.isValid());
-        }
-      });
-    }
+    const checkUserSession = () => {
+      const user = userPool.getCurrentUser();
+      if (user) {
+        user.getSession((err: any, session: any) => {
+          if (err) {
+            console.error('Error getting session:', err);
+            setIsAuthenticated(false);
+          } else {
+            setIsAuthenticated(session.isValid());
+          }
+          setIsLoading(false);
+        });
+      } else {
+        setIsLoading(false);
+      }
+    };
+
+    checkUserSession();
   }, []);
 
   const signOut = () => {
@@ -40,7 +47,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated, signOut }}>
+    <AuthContext.Provider value={{ isAuthenticated, isLoading, setIsAuthenticated, signOut }}>
       {children}
     </AuthContext.Provider>
   );
