@@ -9,7 +9,7 @@ const Projects = () => {
     <div className='px-4 lg:px-12 md:py-4 flex flex-col mb-2 md:mb-8'>
       <ProjectItem
         title='Hydrogen Production and Carbon Tracking (HyPACT)'
-        description='This is a MCG focuses on the maritime shipping digitisation and decarbonisation, by leveraging cutting-edge technologies in AI and blockchain. of project 1'
+        description='In this project MCG focuses on the maritime shipping digitisation and decarbonisation, by leveraging cutting-edge technologies in AI and blockchain.'
         imageSrc={passport}
         imageAlt='Product Passport Page'
         imageClassNames='border-2 border-slate-950'

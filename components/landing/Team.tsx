@@ -42,13 +42,6 @@ const Team = () => {
             colors={[[125, 211, 252]]}
           />
         </Card>
-        <Card name="Jake Queue">
-          <CanvasRevealEffect
-            animationSpeed={3}
-            containerClassName="bg-red-600"
-            colors={[[125, 211, 252]]}
-          />
-        </Card>
       </div>
     </div>
   )
