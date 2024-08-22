@@ -23,7 +23,7 @@ const Team = () => {
             containerClassName="bg-emerald-900"
           />
         </Card>
-        <Card name="Jake Queue" icon={<MassiveQuestionMark />} linkedin='https://www.linkedin.com/in/jake-queue-262ba426/' email='jqueue@modularclintonglobal.com'>
+        <Card name="Jake Queue" linkedin='https://www.linkedin.com/in/jake-queue-262ba426/' email='jqueue@modularclintonglobal.com'>
           <CanvasRevealEffect
             animationSpeed={3}
             containerClassName="bg-black"
