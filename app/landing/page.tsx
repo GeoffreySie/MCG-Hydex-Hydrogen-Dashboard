@@ -13,7 +13,6 @@ import Image from 'next/image'
 import logo from '@/public/images/logo.png'
 
 
-
 const page = () => {
     const navItems = [
         {
@@ -38,7 +37,7 @@ const page = () => {
         },
     ];
     return (
-        <main className="scroll-smooth relative bg-white flex justify-center items-center flex-col overflow-hidden mx-auto md:px-10 sm:px-5 px-2 py-4 mb-2 md:mb-12 ">
+        <main className="scroll-smooth relative bg-white flex justify-center items-center flex-col overflow-hidden mx-auto sm:px-10 px-5 py-4 mb-12">
             <div className="max-w-7xl w-full">
 
                 <div className="w-32 h-16 relative ml-12 mt-8">
