@@ -13,6 +13,7 @@ const Projects = () => {
         imageSrc={passport}
         imageAlt='Product Passport Page'
         imageClassNames='border-2 border-slate-950'
+        link='https://www.linkedin.com/pulse/mcg-launches-hypact-pioneering-13m-project-green-hydrogen-supply-fwgge/?trackingId=Doe3hnwsyOK6%2FEHW%2BLmfvQ%3D%3D'
       />
       <ProjectItem
         title='IoT and Blockchain integrated Platform for maritime shipping industry'
@@ -20,12 +21,14 @@ const Projects = () => {
         imageSrc={whitepaper}
         imageAlt='MCG Whitepaper'
         imagePosition='left'
+        link='https://www.cranfield.ac.uk/som/research-projects/iot-blockchain-integrated-platform-for-maritime-shipping-industry'
       />
       <ProjectItem
         title='Environmental Sustainability Commitment'
-        description='MCG focuses on the maritime shipping digitisation and decarbonisation, by leveraging cutting-edge technologies in AI and blockchain.'
+        description='MCG is committed to keep environmental sustainability.'
         imageSrc={environment}
         imageAlt='Environmental Sustainability Commitment'
+        link=''
       />
     </div>
   )

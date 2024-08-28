@@ -11,7 +11,7 @@ import Contact from '@/components/landing/Contact'
 import Companies from '@/components/landing/Companies'
 import Image from 'next/image'
 import logo from '@/public/images/logo.png'
-
+import Aboutus from '@/components/landing/Aboutus'
 
 
 const page = () => {
@@ -31,6 +31,10 @@ const page = () => {
         {
           name: "News",
           link: "#News",
+        },
+        {
+          name: "Aboutus",
+          link: "#Aboutus",
         },
         {
           name: "Contacts",
@@ -70,6 +74,11 @@ const page = () => {
 
                 <div id='News'>
                 <News/>      
+                </div>  
+                <Separator/>
+
+                <div id='Aboutus'>
+                <Aboutus/>      
                 </div>  
                 <Separator/>
 

@@ -8,10 +8,11 @@ interface ProjectItemProps {
   imageAlt: string;
   imageClassNames?: string;
   imagePosition?: 'left' | 'right';
-
+  link:string;
+  
 }
 
-const ProjectItem: React.FC<ProjectItemProps> = ({ title, description, imageSrc, imageAlt, imageClassNames = '',imagePosition = 'right'}) => {
+const ProjectItem: React.FC<ProjectItemProps> = ({ title, description, imageSrc, imageAlt, imageClassNames = '',imagePosition = 'right',link=''}) => {
   return (
     <div className=' lg:px-12 py-4 grid grid-cols-1 md:grid-cols-2 mt-12 gap-12 justify-items-center'>
 
@@ -36,7 +37,9 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ title, description, imageSrc,
         </p>
 
         <div className='flex flex-row mt-6'>
-          <InvertedButton text='Learn more' />
+          <a href={link}>
+                    <InvertedButton text='Learn more' />
+          </a>
         </div>
       </div>
 
