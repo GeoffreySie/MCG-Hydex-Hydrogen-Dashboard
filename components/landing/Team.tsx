@@ -2,7 +2,8 @@ import React from 'react'
 import { CanvasRevealEffect } from "@/components/landing/ui/canvas-reveal-effect";
 import Card from "@/components/landing/ui/team-card";
 import clinton from "@/public/images/clinton.png";
-
+import jay from "@/public/images/jay.jpg";
+import paul from "@/public/images/paul.png";
 const Team = () => {
   return (
     <div className='mt-4 py-4 px-16'>
@@ -23,7 +24,12 @@ const Team = () => {
             containerClassName="bg-emerald-900"
           />
         </Card>
-        <Card name="Jake Queue" linkedin='https://www.linkedin.com/in/jake-queue-262ba426/' email='jqueue@modularclintonglobal.com'>
+        <Card 
+        name="Jake Queue" 
+        linkedin='https://www.linkedin.com/in/jake-queue-262ba426/' 
+        email='jqueue@modularclintonglobal.com'
+        imageSrc={jay}
+        >
           <CanvasRevealEffect
             animationSpeed={3}
             containerClassName="bg-black"
@@ -35,7 +41,13 @@ const Team = () => {
           />
           <div className="absolute inset-0 [mask-image:radial-gradient(400px_at_center,white,transparent)] bg-black/50" />
         </Card>
-        <Card name="Paul Fisher" occupation='Technology Director'>
+        <Card 
+        name="Paul Fisher" 
+        occupation='Technology Director'
+         linkedin='Paul Fisher' 
+         email= 'pfisher@modularclintonglobal.com'
+         imageSrc={paul}
+         >
           <CanvasRevealEffect
             animationSpeed={3}
             containerClassName="bg-sky-600"
