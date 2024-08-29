@@ -1,5 +1,5 @@
 import React from 'react'
-import Image from 'next/image'
+import Image from "next/image"
 import logo from '@/public/images/logo.png'
 import InvertedButton from './ui/inverted-button'
 
@@ -11,9 +11,11 @@ const Contact = () => {
           <Image
             src={logo}
             alt="MCG Logo"
-            layout="fill"
-            objectFit="contain"
-          />
+            fill
+            sizes="100vw"
+            style={{
+              objectFit: "contain"
+            }} />
         </div>
       </div>
       
@@ -36,7 +38,7 @@ const Contact = () => {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default Contact

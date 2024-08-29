@@ -1,4 +1,4 @@
-import Image, { StaticImageData } from 'next/image';
+import Image, { StaticImageData } from "next/image";
 import InvertedButton from './inverted-button';
 
 interface ProjectItemProps {
@@ -19,12 +19,15 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ title, description, imageSrc,
       {imagePosition === 'left' && (
         <div className='flex flex-col justify-center items-center max-w-[32rem]'>
           <Image
-          src={imageSrc}
-          alt={imageAlt}
-          width={imageSrc.width}  
-          height={imageSrc.height} 
-          className={` ${imageClassNames}`}
-          />
+            src={imageSrc}
+            alt={imageAlt}
+            width={imageSrc.width}
+            height={imageSrc.height}
+            className={` ${imageClassNames}`}
+            style={{
+              maxWidth: "100%",
+              height: "auto"
+            }} />
         </div>
       )}
 
@@ -46,12 +49,15 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ title, description, imageSrc,
       {imagePosition === 'right' && (
         <div className='flex flex-col justify-center items-center max-w-[32rem]'>
           <Image
-          src={imageSrc}
-          alt={imageAlt}
-          width={imageSrc.width}  
-          height={imageSrc.height} 
-          className={`${imageClassNames}`}
-          />
+            src={imageSrc}
+            alt={imageAlt}
+            width={imageSrc.width}
+            height={imageSrc.height}
+            className={`${imageClassNames}`}
+            style={{
+              maxWidth: "100%",
+              height: "auto"
+            }} />
         </div>
       )}
       

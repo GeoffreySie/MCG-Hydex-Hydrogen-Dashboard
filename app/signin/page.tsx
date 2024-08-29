@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { CognitoUser, AuthenticationDetails } from 'amazon-cognito-identity-js';
 import userPool from '../../lib/UserPool';
 import { useAuth } from '../context/AuthContext';
-import Image from 'next/image'
+import Image from "next/image"
 import logo from '@/public/images/logo.png'
 
 const SignInPage: React.FC = () => {
@@ -71,15 +71,16 @@ const SignInPage: React.FC = () => {
   };
 
   return (
-
     <div className="flex flex-col items-center justify-center min-h-screen bg-white">
       <div className="w-32 h-16 absolute left-12 top-8">
           <Image
-          src={logo}
-          alt="MCG Logo"
-          layout="fill"
-          objectFit="contain"
-          />
+            src={logo}
+            alt="MCG Logo"
+            fill
+            sizes="100vw"
+            style={{
+              objectFit: "contain"
+            }} />
       </div>
       <h1 className="text-2xl font-bold mb-4">{isSignUp ? 'Sign Up' : 'Sign In'}</h1>
       <form onSubmit={isSignUp ? handleSignUp : handleSignIn} className="bg-amber-100 w-11/12 h-1/3 p-6 rounded shadow-md sm:w-3/6 md:w-1/3">

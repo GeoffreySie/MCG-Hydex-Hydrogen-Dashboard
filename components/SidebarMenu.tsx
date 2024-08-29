@@ -10,7 +10,7 @@ import { MdLocationOn } from 'react-icons/md';
 import { FaPassport, FaPlus } from "react-icons/fa";
 import { CognitoUser } from 'amazon-cognito-identity-js';
 import userPool from '../lib/UserPool'; 
-import Image from 'next/image'
+import Image from "next/image"
 import logo from '@/public/images/logoIcon.png'
 
 
@@ -92,10 +92,15 @@ export const Logo = () => {
       <Image
         src={logo}
         alt="Logo Icon"
-        width={24} // Adjust width as needed
-        height={20} // Adjust height as needed
+        // Adjust width as needed
+        width={24}
+        // Adjust height as needed
+        height={20}
         className="flex-shrink-0"
-      />
+        style={{
+          maxWidth: "100%",
+          height: "auto"
+        }} />
       <motion.span
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -116,10 +121,15 @@ export const LogoIcon = () => {
       <Image
         src={logo}
         alt="Logo Icon"
-        width={24} // Adjust width as needed
-        height={20} // Adjust height as needed
+        // Adjust width as needed
+        width={24}
+        // Adjust height as needed
+        height={20}
         className="flex-shrink-0"
-      />
+        style={{
+          maxWidth: "100%",
+          height: "auto"
+        }} />
     </Link>
   );
 };

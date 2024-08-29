@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { AnimatePresence, motion } from "framer-motion";
-import Image, { StaticImageData } from 'next/image';
+import Image, { StaticImageData } from "next/image";
 import defaultImage from "@/public/images/profile.png";
 
 const Card = ({
@@ -55,11 +55,14 @@ const Card = ({
             <Image
               src={imageSrc}
               alt={name}
-              
               width={150}
               height={100}
               className="object-cover rounded-lg"
-            />
+              sizes="100vw"
+              style={{
+                width: "100%",
+                height: "auto"
+              }} />
           </div>
 
           <h2 className="mb-4 text-xl font-bold hidden group-hover/canvas-card:block group-hover/canvas-card:opacity-100 group-hover/canvas-card:text-white group-hover/canvas-card:-translate-y-2 transition duration-200">
@@ -86,7 +89,7 @@ const Card = ({
             </p>
           )}
           {email && (
-            <p className="text-sm text-center hidden group-hover/canvas-card:block group-hover/canvas-card:opacity-100 group-hover/canvas-card:-translate-y-2 transition duration-200 group-hover/canvas-card:text-white">
+            <p  className="text-sm text-center hidden group-hover/canvas-card:block group-hover/canvas-card:opacity-100 group-hover/canvas-card:-translate-y-2 transition duration-200 group-hover/canvas-card:text-white">
               Email: {email}
             </p>
           )}

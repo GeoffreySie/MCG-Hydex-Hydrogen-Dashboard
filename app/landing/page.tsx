@@ -9,7 +9,7 @@ import GetInTouch from '@/components/landing/GetInTouch'
 import { Separator } from "@/components/landing/ui/separator"
 import Contact from '@/components/landing/Contact'
 import Companies from '@/components/landing/Companies'
-import Image from 'next/image'
+import Image from "next/image"
 import logo from '@/public/images/logo.png'
 
 
@@ -42,11 +42,13 @@ const page = () => {
 
                 <div className="w-32 h-16 relative ml-12 mt-8">
                     <Image
-                    src={logo}
-                    alt="MCG Logo"
-                    layout="fill"
-                    objectFit="contain"
-                    />
+                        src={logo}
+                        alt="MCG Logo"
+                        fill
+                        sizes="100vw"
+                        style={{
+                            objectFit: "contain"
+                        }} />
                 </div>
 
                 <FloatingNav navItems={navItems}/>
@@ -84,7 +86,7 @@ const page = () => {
 
             </div>
         </main>
-    )
+    );
 }
 
 export default page
