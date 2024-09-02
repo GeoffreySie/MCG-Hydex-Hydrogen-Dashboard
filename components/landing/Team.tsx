@@ -27,7 +27,7 @@ const Team = () => {
         <Card 
         name="Jake Queue" 
         linkedin='https://www.linkedin.com/in/jake-queue-262ba426/' 
-        email='jqueue@modularclintonglobal.com'
+        email='jqueue@modularclintonglobal.ca'
         imageSrc={jay}
         >
           <CanvasRevealEffect
@@ -45,7 +45,7 @@ const Team = () => {
         name="Paul Fisher" 
         occupation='Technology Director'
          linkedin='Paul Fisher' 
-         email= 'pfisher@modularclintonglobal.com'
+         email= 'pfisher@modularclintonglobal.ca'
          imageSrc={paul}
          >
           <CanvasRevealEffect
