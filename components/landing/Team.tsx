@@ -6,7 +6,7 @@ import jay from "@/public/images/jay.jpg";
 import paul from "@/public/images/paul.png";
 const Team = () => {
   return (
-    <div className='mt-4 py-4 px-16'>
+    <div className='mt-4 py-4'>
       <h1 className='text-4xl font-bold text-green-800 text-center'>
         Meet the Team
       </h1>
@@ -19,10 +19,7 @@ const Team = () => {
           email='cliu@modularclintonglobal.ca'
           imageSrc={clinton}
         >
-          <CanvasRevealEffect
-            animationSpeed={5.1}
-            containerClassName="bg-emerald-900"
-          />
+         
         </Card>
         <Card 
         name="Jake Queue" 
@@ -30,15 +27,7 @@ const Team = () => {
         email='jqueue@modularclintonglobal.ca'
         imageSrc={jay}
         >
-          <CanvasRevealEffect
-            animationSpeed={3}
-            containerClassName="bg-black"
-            colors={[
-              [236, 72, 153],
-              [232, 121, 249],
-            ]}
-            dotSize={2}
-          />
+         
           <div className="absolute inset-0 [mask-image:radial-gradient(400px_at_center,white,transparent)] bg-black/50" />
         </Card>
         <Card 
@@ -48,11 +37,7 @@ const Team = () => {
          email= 'pfisher@modularclintonglobal.ca'
          imageSrc={paul}
          >
-          <CanvasRevealEffect
-            animationSpeed={3}
-            containerClassName="bg-sky-600"
-            colors={[[125, 211, 252]]}
-          />
+         
         </Card>
       </div>
     </div>

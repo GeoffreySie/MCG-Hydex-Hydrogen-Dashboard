@@ -24,10 +24,10 @@ const Card = ({
   }) => {
     const [hovered, setHovered] = React.useState(false);
     return (
-      <div
+      <div max-width="300px"
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
-        className="border border-black/[0.2] group/canvas-card flex items-center justify-center dark:border-white/[0.2]  max-w-sm w-full h-96 mx-auto p-4 relative"
+        className="bg-black border border-black/[0.2] group/canvas-card flex items-center justify-center dark:border-white/[0.2]  max-w-sm w-full h-96 mx-auto p-4 relative"
       >
         <Icon className="absolute h-6 w-6 -top-3 -left-3 dark:text-white text-black" />
         <Icon className="absolute h-6 w-6 -bottom-3 -left-3 dark:text-white text-black" />
@@ -47,11 +47,9 @@ const Card = ({
         </AnimatePresence>
    
         <div className="flex flex-col justify-center items-center w-64">
-          <div className="text-center group-hover/canvas-card:-translate-y-4 group-hover/canvas-card:opacity-0 transition duration-200 group-hover/canvas-card:hidden w-full mx-auto flex items-center justify-center">
-            {<MassiveQuestionMark/>}
-          </div>
+          
 
-          <div className="w-fit h-fit hidden group-hover/canvas-card:block group-hover/canvas-card:opacity-100 group-hover/canvas-card:-translate-y-2 transition duration-200 mx-auto mb-8">
+          <div className="w-fit h-fit group-hover/canvas-card:block group-hover/canvas-card:opacity-100 group-hover/canvas-card:-translate-y-2 transition duration-200 mx-auto mb-8">
             <Image
               src={imageSrc}
               alt={name}
@@ -65,11 +63,11 @@ const Card = ({
               }} />
           </div>
 
-          <h2 className="mb-4 text-xl font-bold hidden group-hover/canvas-card:block group-hover/canvas-card:opacity-100 group-hover/canvas-card:text-white group-hover/canvas-card:-translate-y-2 transition duration-200">
+          <h2 className="mb-4 text-xl font-bold   group-hover/canvas-card:block group-hover/canvas-card:opacity-100 group-hover/canvas-card:text-white group-hover/canvas-card:-translate-y-2 transition duration-200">
             {name}
           </h2>
           {occupation && (
-            <p className="text-center hidden group-hover/canvas-card:block group-hover/canvas-card:opacity-100 group-hover/canvas-card:-translate-y-2 transition duration-200 group-hover/canvas-card:text-white my-2">
+            <p className="text-center group-hover/canvas-card:block group-hover/canvas-card:opacity-100 group-hover/canvas-card:-translate-y-2 transition duration-200 group-hover/canvas-card:text-white my-2">
               {occupation}
             </p>
           )}
@@ -78,18 +76,18 @@ const Card = ({
             href={linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm text-center hidden group-hover/canvas-card:block group-hover/canvas-card:opacity-100 group-hover/canvas-card:-translate-y-2 transition duration-200 group-hover/canvas-card:text-white"
+            className="text-sm text-center   group-hover/canvas-card:block group-hover/canvas-card:opacity-100 group-hover/canvas-card:-translate-y-2 transition duration-200 group-hover/canvas-card:text-white"
             >
               LinkedIn: {name}
             </a>
           )}
           {phone && (
-            <p className="text-sm text-center hidden group-hover/canvas-card:block group-hover/canvas-card:opacity-100 group-hover/canvas-card:-translate-y-2 transition duration-200 group-hover/canvas-card:text-white">
+            <p className="text-sm text-center   group-hover/canvas-card:block group-hover/canvas-card:opacity-100 group-hover/canvas-card:-translate-y-2 transition duration-200 group-hover/canvas-card:text-white">
               Phone: {phone}
             </p>
           )}
           {email && (
-            <p  className="text-sm text-center hidden group-hover/canvas-card:block group-hover/canvas-card:opacity-100 group-hover/canvas-card:-translate-y-2 transition duration-200 group-hover/canvas-card:text-white">
+            <p  className="text-sm text-center   group-hover/canvas-card:block group-hover/canvas-card:opacity-100 group-hover/canvas-card:-translate-y-2 transition duration-200 group-hover/canvas-card:text-white">
               Email: {email}
             </p>
           )}
