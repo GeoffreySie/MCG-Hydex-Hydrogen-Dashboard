@@ -32,6 +32,18 @@ const items = [
         imageSrc: 'https://cdn.brandfetch.io/elupeg.com/w/144/h/28/logo',
         imageAlt: "Elupeg Logo",
     },
+    {
+        imageSrc: 'https://cdn.brandfetch.io/cam.ac.uk/w/400/h/400',
+        imageAlt: "university of cambridge logo",
+    },
+    {
+        imageSrc: 'https://cdn.brandfetch.io/barclays.co.uk/w/512/h/85/logo',
+        imageAlt: "barclays logo",
+    },
+    {
+        imageSrc: 'https://cdn.brandfetch.io/acceleris.com/w/400/h/400',
+        imageAlt: "KPMG & acceleris logo",
+    },
   ];
 
 const Companies = () => {

@@ -16,7 +16,7 @@ const Team = () => {
           occupation='Chief Executive Officer'
           linkedin='https://www.linkedin.com/in/clinton-liu'
           // phone='+44 7586 852406'
-          email='cliu@modularclintonglobal.ca'
+          email='cliu@modularclintonglobal.com'
           imageSrc={clinton}
         >
          
@@ -24,7 +24,7 @@ const Team = () => {
         <Card 
         name="Jake Queue" 
         linkedin='https://www.linkedin.com/in/jake-queue-262ba426/' 
-        email='jqueue@modularclintonglobal.ca'
+        email='jqueue@modularclintonglobal.com'
         imageSrc={jay}
         >
          
@@ -34,7 +34,7 @@ const Team = () => {
         name="Paul Fisher" 
         occupation='Technology Director'
          linkedin='Paul Fisher' 
-         email= 'pfisher@modularclintonglobal.ca'
+         email= 'pfisher@modularclintonglobal.com'
          imageSrc={paul}
          >
          
